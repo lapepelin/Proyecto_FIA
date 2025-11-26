@@ -1,5 +1,6 @@
 """
 Análisis para Tienda Aurelion.
+
 El script realiza: limpieza, estadísticas descriptivas, distribuciones,
 correlaciones, generación de gráficos.
 """
@@ -13,31 +14,60 @@ import pandas as pd
 import seaborn as sns
 
 
-def cargar_datos(base_dir: Path) -> dict[str, pd.DataFrame]:
-    """Carga los archivos CSV esperados desde ``base_dir``.
+def _resolver_ruta(base_dir: Path, stem: str) -> Path:
+    """Encuentra el archivo disponible para un dataset.
+
+    Prioriza ``.xlsx`` (los archivos entregados) y acepta ``.csv`` como
+    respaldo para mantener compatibilidad con ejecuciones previas.
+    """
+
+    for ext in (".xlsx", ".csv"):
+        ruta = base_dir / f"{stem}{ext}"
+        if ruta.exists():
+            return ruta
+    raise FileNotFoundError(f"No se encontró {stem}.xlsx ni {stem}.csv en {base_dir}")
+
+
+def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Path]]:
+    """Carga los archivos de clientes, ventas, detalle y productos.
 
     Args:
-        base_dir: Carpeta donde residen los CSV.
+        base_dir: Carpeta donde residen los archivos.
 
     Returns:
-        Diccionario con dataframes para clientes, ventas, detalle y productos.
+        Una tupla con el diccionario de dataframes y las rutas de origen.
     """
-    rutas = {
-        "clientes": base_dir / "Clientes.csv",
-        "ventas": base_dir / "Ventas.csv",
-        "detalle": base_dir / "Detalle_ventas.csv",
-        "productos": base_dir / "Productos.csv",
+    
+    stems = {
+        "clientes": "Clientes",
+        "ventas": "Ventas",
+        "detalle": "Detalle_ventas",
+        "productos": "Productos",
     }
 
-    data = {}
-    for nombre, ruta in rutas.items():
-        if not ruta.exists():
-            raise FileNotFoundError(f"No se encontró {ruta}")
-
+    data: dict[str, pd.DataFrame] = {}
+    rutas: dict[str, Path] = {}
+    for nombre, stem in stems.items():
+        ruta = _resolver_ruta(base_dir, stem)
+        rutas[nombre] = ruta
         parse_dates = ["fecha", "fecha_alta"] if nombre in {"clientes", "ventas"} else None
-        data[nombre] = pd.read_csv(ruta, parse_dates=parse_dates)
+        if ruta.suffix.lower() == ".xlsx":
+            data[nombre] = pd.read_excel(ruta, parse_dates=parse_dates)
+        else:
+            data[nombre] = pd.read_csv(ruta, parse_dates=parse_dates)
 
-    return data
+    return data, rutas
+
+
+def exportar_fuentes_csv(
+    data: dict[str, pd.DataFrame], rutas: dict[str, Path], destino: Path
+) -> None:
+    """Convierte las fuentes Excel a CSV sin modificar los archivos originales."""
+
+    destino.mkdir(parents=True, exist_ok=True)
+    for nombre, df in data.items():
+        if rutas.get(nombre, Path()).suffix.lower() == ".xlsx":
+            df.to_csv(destino / f"{nombre}.csv", index=False)
 
 
 def limpiar_datos(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
@@ -216,9 +246,11 @@ def main() -> None:
     salida = base_dir / "resultados"
     salida.mkdir(exist_ok=True)
 
-    data = cargar_datos(base_dir)
+    data, rutas = cargar_datos(base_dir)
     data_limpia = limpiar_datos(data)
     ventas_detalle = data_limpia["ventas_detalle"]
+
+    exportar_fuentes_csv(data, rutas, salida / "fuentes_csv")
 
     # Exportar versiones limpias
     for nombre, df in data_limpia.items():
