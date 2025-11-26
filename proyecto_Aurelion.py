@@ -177,7 +177,13 @@ def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
     plt.close()
 
     plt.figure(figsize=(8, 5))
-    sns.countplot(data=ventas_detalle.drop_duplicates("id_venta"), x="medio_pago", palette="viridis")
+    sns.countplot(
+        data=ventas_detalle.drop_duplicates("id_venta"),
+        x="medio_pago",
+        hue="medio_pago",
+        palette="viridis",
+        legend=False,
+    )
     plt.title("Ventas por medio de pago")
     plt.xlabel("Medio de pago")
     plt.ylabel("Número de ventas")
