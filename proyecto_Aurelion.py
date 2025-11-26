@@ -5,7 +5,6 @@ El script realiza: limpieza, estadísticas descriptivas, distribuciones,
 correlaciones, generación de gráficos.
 """
 
-import os
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -61,12 +60,16 @@ def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Pat
 def exportar_fuentes_csv(
     data: dict[str, pd.DataFrame], rutas: dict[str, Path], destino: Path
 ) -> None:
-    """Convierte las fuentes Excel a CSV sin modificar los archivos originales."""
+    """Convierte los Excel a CSV y los deja en un directorio plano.
+
+    Los archivos mantienen el nombre original y no se crean subcarpetas.
+    """
 
     destino.mkdir(parents=True, exist_ok=True)
     for nombre, df in data.items():
-        if rutas.get(nombre, Path()).suffix.lower() == ".xlsx":
-            df.to_csv(destino / f"{nombre}.csv", index=False)
+        ruta_origen = rutas.get(nombre, Path())
+        if ruta_origen.suffix.lower() == ".xlsx":
+            df.to_csv(destino / f"{ruta_origen.stem}.csv", index=False)
 
 
 def limpiar_datos(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
@@ -206,46 +209,6 @@ def crear_correlaciones(ventas_detalle: pd.DataFrame, salida: Path) -> pd.DataFr
     plt.close()
     return corr
 
-
-def crear_graficos(ventas_detalle: pd.DataFrame, salida: Path) -> None:
-    """Crea gráficos adicionales de comportamiento temporal y por categoría."""
-    salida.mkdir(parents=True, exist_ok=True)
-    ventas_detalle["fecha"] = pd.to_datetime(ventas_detalle["fecha"], errors="coerce")
-    ventas_detalle["mes"] = ventas_detalle["fecha"].dt.to_period("M")
-
-    # Ventas por mes
-    ventas_mensuales = ventas_detalle.groupby("mes")["importe"].sum().sort_index()
-    plt.figure(figsize=(8, 5))
-    ventas_mensuales.plot(kind="bar", color="#55a868")
-    plt.title("Monto total vendido por mes")
-    plt.xlabel("Mes")
-    plt.ylabel("Importe")
-    plt.tight_layout()
-    plt.savefig(salida / "ventas_mensuales.png")
-    plt.close()
-
-    # Top categorías
-    top_categorias = ventas_detalle.groupby("categoria")["importe"].sum().sort_values(ascending=False).head(10)
-    plt.figure(figsize=(8, 5))
-    top_categorias.plot(kind="bar", color="#c44e52")
-    plt.title("Top categorías por importe vendido")
-    plt.xlabel("Categoría")
-    plt.ylabel("Importe acumulado")
-    plt.tight_layout()
-    plt.savefig(salida / "top_categorias.png")
-    plt.close()
-
-    # Precio vs cantidad
-    plt.figure(figsize=(7, 5))
-    sns.scatterplot(data=ventas_detalle, x="precio_final", y="cantidad", alpha=0.7)
-    plt.title("Relación entre precio y cantidad")
-    plt.xlabel("Precio")
-    plt.ylabel("Cantidad")
-    plt.tight_layout()
-    plt.savefig(salida / "precio_vs_cantidad.png")
-    plt.close()
-
-
 def main() -> None:
     base_dir = Path(__file__).resolve().parent
     salida = base_dir / "resultados"
@@ -255,20 +218,16 @@ def main() -> None:
     data_limpia = limpiar_datos(data)
     ventas_detalle = data_limpia["ventas_detalle"]
 
-    exportar_fuentes_csv(data, rutas, salida / "fuentes_csv")
+    exportar_fuentes_csv(data, rutas, salida)
 
     # Exportar versiones limpias
     for nombre, df in data_limpia.items():
-        df.to_csv(salida / f"{nombre}_limpio.csv", index=False)
+        base_nombre = rutas.get(nombre, Path()).stem if nombre in rutas else nombre
+        df.to_csv(salida / f"{base_nombre}_limpio.csv", index=False)
 
     stats = estadisticas_descriptivas(ventas_detalle)
-    distribuciones_dir = salida / "distribuciones"
-    correlaciones_dir = salida / "correlaciones"
-    graficos_dir = salida / "graficos"
-
-    crear_distribuciones(ventas_detalle, distribuciones_dir)
-    corr = crear_correlaciones(ventas_detalle, correlaciones_dir)
-    crear_graficos(ventas_detalle, graficos_dir)
+    crear_distribuciones(ventas_detalle, salida)
+    corr = crear_correlaciones(ventas_detalle, salida)
 
     # Guardar estadísticas
     stats["resumen_general"].to_csv(salida / "resumen_general.csv")
