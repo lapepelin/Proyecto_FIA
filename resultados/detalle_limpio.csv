@@ -1,0 +1,344 @@
+id_venta,id_producto,nombre_producto,cantidad,precio_unitario,importe,categoria,precio_catalogo,precio_final
+1,90,Toallas Húmedas x50,1,2902,2902,Limpieza,2902,2902
+2,82,Aceitunas Negras 200g,5,2394,11970,Limpieza,2394,2394
+2,39,Helado Vainilla 1L,5,469,2345,Alimentos,469,469
+2,70,Fernet 750ml,2,4061,8122,Limpieza,4061,4061
+2,22,Medialunas de Manteca,1,2069,2069,Limpieza,2069,2069
+2,79,Hamburguesas Congeladas x4,4,2420,9680,Alimentos,2420,2420
+3,9,Yerba Mate Suave 1kg,2,3878,7756,Alimentos,3878,3878
+3,2,Pepsi 1.5L,2,4973,9946,Limpieza,4973,4973
+3,85,Jugo en Polvo Naranja,1,1856,1856,Alimentos,1856,1856
+4,4,Fanta Naranja 1.5L,2,2033,4066,Limpieza,2033,2033
+4,23,Bizcochos Salados,5,2380,11900,Alimentos,2380,2380
+5,86,Jugo en Polvo Limón,4,4090,16360,Limpieza,4090,4090
+6,25,Galletitas Vainilla,2,4015,8030,Alimentos,4015,4015
+6,31,Mix de Frutos Secos 200g,3,3409,10227,Alimentos,3409,3409
+6,83,Queso Untable 190g,1,1830,1830,Alimentos,1830,1830
+6,59,Chicle Menta,4,3612,14448,Alimentos,3612,3612
+7,63,Granola 250g,3,4337,13011,Alimentos,4337,4337
+8,53,Lavandina 1L,5,1664,8320,Alimentos,1664,1664
+8,18,Queso Rallado 150g,4,3444,13776,Limpieza,3444,3444
+8,68,Vino Blanco 750ml,5,2684,13420,Limpieza,2684,2684
+9,65,Cerveza Rubia 1L,4,2423,9692,Alimentos,2423,2423
+10,36,Dulce de Leche 400g,2,2559,5118,Limpieza,2559,2559
+10,100,Trapo de Piso,4,4854,19416,Limpieza,4854,4854
+10,37,Mermelada de Durazno 400g,3,3196,9588,Alimentos,3196,3196
+10,62,Stevia 100 sobres,1,3848,3848,Limpieza,3848,3848
+11,13,Té Verde 20 saquitos,1,2383,2383,Alimentos,2383,2383
+11,65,Cerveza Rubia 1L,2,2423,4846,Alimentos,2423,2423
+11,28,Papas Fritas Clásicas 100g,1,936,936,Limpieza,936,936
+12,72,Ron 700ml,2,3876,7752,Limpieza,3876,3876
+12,50,Azúcar 1kg,2,727,1454,Limpieza,727,727
+12,56,Papel Higiénico x4,3,2532,7596,Limpieza,2532,2532
+12,87,Sopa Instantánea Pollo,3,1679,5037,Alimentos,1679,1679
+12,38,Mermelada de Frutilla 400g,4,1584,6336,Limpieza,1584,1584
+13,87,Sopa Instantánea Pollo,1,1679,1679,Alimentos,1679,1679
+13,81,Aceitunas Verdes 200g,3,2520,7560,Alimentos,2520,2520
+13,13,Té Verde 20 saquitos,1,2383,2383,Alimentos,2383,2383
+14,36,Dulce de Leche 400g,4,2559,10236,Limpieza,2559,2559
+14,72,Ron 700ml,5,3876,19380,Limpieza,3876,3876
+14,38,Mermelada de Frutilla 400g,3,1584,4752,Limpieza,1584,1584
+14,97,Limpiavidrios 500ml,1,872,872,Alimentos,872,872
+15,37,Mermelada de Durazno 400g,3,3196,9588,Alimentos,3196,3196
+16,35,Barrita de Cereal 30g,5,4430,22150,Alimentos,4430,4430
+17,81,Aceitunas Verdes 200g,5,2520,12600,Alimentos,2520,2520
+17,46,Lentejas Secas 500g,5,3036,15180,Limpieza,3036,3036
+17,74,Whisky 750ml,3,2953,8859,Limpieza,2953,2953
+18,33,Chocolate con Leche 100g,2,1255,2510,Alimentos,1255,1255
+18,4,Fanta Naranja 1.5L,5,2033,10165,Limpieza,2033,2033
+18,24,Galletitas Chocolate,2,1305,2610,Limpieza,1305,1305
+18,15,Leche Descremada 1L,3,2538,7614,Alimentos,2538,2538
+18,22,Medialunas de Manteca,5,2069,10345,Limpieza,2069,2069
+19,38,Mermelada de Frutilla 400g,2,1584,3168,Limpieza,1584,1584
+19,98,Desengrasante 500ml,3,2843,8529,Limpieza,2843,2843
+19,63,Granola 250g,3,4337,13011,Alimentos,4337,4337
+20,32,Chocolate Amargo 100g,3,2234,6702,Limpieza,2234,2234
+21,76,Pizza Congelada Muzzarella,5,4286,21430,Limpieza,4286,4286
+21,35,Barrita de Cereal 30g,1,4430,4430,Alimentos,4430,4430
+22,9,Yerba Mate Suave 1kg,2,3878,7756,Alimentos,3878,3878
+22,28,Papas Fritas Clásicas 100g,3,936,2808,Limpieza,936,936
+22,24,Galletitas Chocolate,4,1305,5220,Limpieza,1305,1305
+23,64,Avena Instantánea 250g,4,3953,15812,Limpieza,3953,3953
+23,83,Queso Untable 190g,4,1830,7320,Alimentos,1830,1830
+24,91,Desodorante Aerosol,2,4690,9380,Alimentos,4690,4690
+24,40,Helado Chocolate 1L,5,1215,6075,Limpieza,1215,1215
+25,55,Shampoo 400ml,1,1407,1407,Alimentos,1407,1407
+25,95,Mascarilla Capilar,5,1581,7905,Alimentos,1581,1581
+25,72,Ron 700ml,1,3876,3876,Limpieza,3876,3876
+26,79,Hamburguesas Congeladas x4,2,2420,4840,Alimentos,2420,2420
+26,86,Jugo en Polvo Limón,1,4090,4090,Limpieza,4090,4090
+27,7,Jugo de Manzana 1L,4,3269,13076,Alimentos,3269,3269
+27,78,Verduras Congeladas Mix,4,4289,17156,Limpieza,4289,4289
+28,74,Whisky 750ml,1,2953,2953,Limpieza,2953,2953
+28,91,Desodorante Aerosol,2,4690,9380,Alimentos,4690,4690
+28,72,Ron 700ml,1,3876,3876,Limpieza,3876,3876
+28,18,Queso Rallado 150g,2,3444,6888,Limpieza,3444,3444
+28,27,Alfajor Simple,5,2502,12510,Alimentos,2502,2502
+29,58,Caramelos Masticables,1,4752,4752,Limpieza,4752,4752
+29,36,Dulce de Leche 400g,2,2559,5118,Limpieza,2559,2559
+29,71,Vodka 700ml,4,508,2032,Alimentos,508,508
+29,27,Alfajor Simple,2,2502,5004,Alimentos,2502,2502
+29,66,Cerveza Negra 1L,1,1533,1533,Limpieza,1533,1533
+30,49,Harina de Trigo 1kg,4,2512,10048,Alimentos,2512,2512
+30,78,Verduras Congeladas Mix,3,4289,12867,Limpieza,4289,4289
+30,82,Aceitunas Negras 200g,4,2394,9576,Limpieza,2394,2394
+30,7,Jugo de Manzana 1L,1,3269,3269,Alimentos,3269,3269
+31,92,Crema Dental 90g,4,2512,10048,Limpieza,2512,2512
+31,90,Toallas Húmedas x50,3,2902,8706,Limpieza,2902,2902
+31,84,Queso Azul 150g,5,1645,8225,Limpieza,1645,1645
+32,72,Ron 700ml,5,3876,19380,Limpieza,3876,3876
+32,53,Lavandina 1L,4,1664,6656,Alimentos,1664,1664
+32,17,Queso Cremoso 500g,3,4834,14502,Alimentos,4834,4834
+32,35,Barrita de Cereal 30g,3,4430,13290,Alimentos,4430,4430
+33,47,Garbanzos 500g,2,2939,5878,Alimentos,2939,2939
+33,76,Pizza Congelada Muzzarella,4,4286,17144,Limpieza,4286,4286
+33,100,Trapo de Piso,1,4854,4854,Limpieza,4854,4854
+33,91,Desodorante Aerosol,2,4690,9380,Alimentos,4690,4690
+34,10,Yerba Mate Intensa 1kg,1,4883,4883,Limpieza,4883,4883
+34,32,Chocolate Amargo 100g,5,2234,11170,Limpieza,2234,2234
+35,93,Cepillo de Dientes,3,2142,6426,Alimentos,2142,2142
+35,80,Helado de Frutilla 1L,2,1981,3962,Limpieza,1981,1981
+35,88,Caldo Concentrado Carne,5,2570,12850,Limpieza,2570,2570
+36,50,Azúcar 1kg,4,727,2908,Limpieza,727,727
+36,48,Porotos Negros 500g,2,4462,8924,Limpieza,4462,4462
+37,18,Queso Rallado 150g,3,3444,10332,Limpieza,3444,3444
+38,62,Stevia 100 sobres,5,3848,19240,Limpieza,3848,3848
+38,14,Leche Entera 1L,3,1723,5169,Limpieza,1723,1723
+38,65,Cerveza Rubia 1L,5,2423,12115,Alimentos,2423,2423
+38,5,Agua Mineral 500ml,3,4777,14331,Alimentos,4777,4777
+39,44,Arroz Largo Fino 1kg,4,2979,11916,Limpieza,2979,2979
+39,22,Medialunas de Manteca,2,2069,4138,Limpieza,2069,2069
+39,58,Caramelos Masticables,4,4752,19008,Limpieza,4752,4752
+39,81,Aceitunas Verdes 200g,4,2520,10080,Alimentos,2520,2520
+40,44,Arroz Largo Fino 1kg,2,2979,5958,Limpieza,2979,2979
+41,51,Sal Fina 500g,1,1745,1745,Alimentos,1745,1745
+41,15,Leche Descremada 1L,1,2538,2538,Alimentos,2538,2538
+42,47,Garbanzos 500g,3,2939,8817,Alimentos,2939,2939
+42,29,Papas Fritas Onduladas 100g,1,1868,1868,Alimentos,1868,1868
+42,73,Gin 700ml,3,1561,4683,Alimentos,1561,1561
+43,1,Coca Cola 1.5L,5,2347,11735,Alimentos,2347,2347
+43,49,Harina de Trigo 1kg,2,2512,5024,Alimentos,2512,2512
+43,66,Cerveza Negra 1L,2,1533,3066,Limpieza,1533,1533
+44,48,Porotos Negros 500g,1,4462,4462,Limpieza,4462,4462
+44,47,Garbanzos 500g,2,2939,5878,Alimentos,2939,2939
+44,100,Trapo de Piso,2,4854,9708,Limpieza,4854,4854
+45,12,Té Negro 20 saquitos,2,570,1140,Limpieza,570,570
+45,18,Queso Rallado 150g,2,3444,6888,Limpieza,3444,3444
+45,87,Sopa Instantánea Pollo,4,1679,6716,Alimentos,1679,1679
+45,98,Desengrasante 500ml,1,2843,2843,Limpieza,2843,2843
+45,52,Detergente Líquido 750ml,2,2582,5164,Limpieza,2582,2582
+46,21,Pan Lactal Integral,1,272,272,Alimentos,272,272
+47,43,Salsa de Tomate 500g,5,887,4435,Alimentos,887,887
+47,6,Jugo de Naranja 1L,3,4170,12510,Limpieza,4170,4170
+48,70,Fernet 750ml,1,4061,4061,Limpieza,4061,4061
+48,54,Jabón de Tocador,5,1592,7960,Limpieza,1592,1592
+48,57,Servilletas x100,4,4520,18080,Alimentos,4520,4520
+49,59,Chicle Menta,2,3612,7224,Alimentos,3612,3612
+49,21,Pan Lactal Integral,4,272,1088,Alimentos,272,272
+49,59,Chicle Menta,4,3612,14448,Alimentos,3612,3612
+49,18,Queso Rallado 150g,3,3444,10332,Limpieza,3444,3444
+49,85,Jugo en Polvo Naranja,3,1856,5568,Alimentos,1856,1856
+50,10,Yerba Mate Intensa 1kg,2,4883,9766,Limpieza,4883,4883
+50,34,Turrón 50g,5,503,2515,Limpieza,503,503
+50,58,Caramelos Masticables,5,4752,23760,Limpieza,4752,4752
+50,32,Chocolate Amargo 100g,3,2234,6702,Limpieza,2234,2234
+50,91,Desodorante Aerosol,4,4690,18760,Alimentos,4690,4690
+51,31,Mix de Frutos Secos 200g,1,3409,3409,Alimentos,3409,3409
+52,83,Queso Untable 190g,2,1830,3660,Alimentos,1830,1830
+52,9,Yerba Mate Suave 1kg,4,3878,15512,Alimentos,3878,3878
+52,81,Aceitunas Verdes 200g,5,2520,12600,Alimentos,2520,2520
+52,38,Mermelada de Frutilla 400g,3,1584,4752,Limpieza,1584,1584
+53,28,Papas Fritas Clásicas 100g,1,936,936,Limpieza,936,936
+54,65,Cerveza Rubia 1L,1,2423,2423,Alimentos,2423,2423
+54,18,Queso Rallado 150g,2,3444,6888,Limpieza,3444,3444
+54,91,Desodorante Aerosol,3,4690,14070,Alimentos,4690,4690
+54,8,Energética Nitro 500ml,3,4218,12654,Limpieza,4218,4218
+55,39,Helado Vainilla 1L,4,469,1876,Alimentos,469,469
+56,18,Queso Rallado 150g,5,3444,17220,Limpieza,3444,3444
+57,31,Mix de Frutos Secos 200g,3,3409,10227,Alimentos,3409,3409
+57,41,Aceite de Girasol 1L,4,860,3440,Alimentos,860,860
+57,9,Yerba Mate Suave 1kg,5,3878,19390,Alimentos,3878,3878
+57,76,Pizza Congelada Muzzarella,3,4286,12858,Limpieza,4286,4286
+57,98,Desengrasante 500ml,4,2843,11372,Limpieza,2843,2843
+58,43,Salsa de Tomate 500g,2,887,1774,Alimentos,887,887
+58,11,Café Molido 250g,1,2053,2053,Alimentos,2053,2053
+59,31,Mix de Frutos Secos 200g,1,3409,3409,Alimentos,3409,3409
+59,8,Energética Nitro 500ml,2,4218,8436,Limpieza,4218,4218
+59,97,Limpiavidrios 500ml,5,872,4360,Alimentos,872,872
+60,43,Salsa de Tomate 500g,1,887,887,Alimentos,887,887
+60,98,Desengrasante 500ml,3,2843,8529,Limpieza,2843,2843
+60,15,Leche Descremada 1L,1,2538,2538,Alimentos,2538,2538
+60,21,Pan Lactal Integral,2,272,544,Alimentos,272,272
+60,91,Desodorante Aerosol,4,4690,18760,Alimentos,4690,4690
+61,9,Yerba Mate Suave 1kg,3,3878,11634,Alimentos,3878,3878
+61,19,Manteca 200g,3,3251,9753,Alimentos,3251,3251
+62,47,Garbanzos 500g,4,2939,11756,Alimentos,2939,2939
+62,95,Mascarilla Capilar,3,1581,4743,Alimentos,1581,1581
+63,8,Energética Nitro 500ml,5,4218,21090,Limpieza,4218,4218
+63,2,Pepsi 1.5L,2,4973,9946,Limpieza,4973,4973
+63,70,Fernet 750ml,3,4061,12183,Limpieza,4061,4061
+63,45,Fideos Spaghetti 500g,4,745,2980,Alimentos,745,745
+64,4,Fanta Naranja 1.5L,2,2033,4066,Limpieza,2033,2033
+64,41,Aceite de Girasol 1L,2,860,1720,Alimentos,860,860
+65,77,Empanadas Congeladas,4,4778,19112,Alimentos,4778,4778
+65,22,Medialunas de Manteca,3,2069,6207,Limpieza,2069,2069
+65,38,Mermelada de Frutilla 400g,5,1584,7920,Limpieza,1584,1584
+65,36,Dulce de Leche 400g,4,2559,10236,Limpieza,2559,2559
+66,16,Yogur Natural 200g,3,4613,13839,Limpieza,4613,4613
+67,53,Lavandina 1L,1,1664,1664,Alimentos,1664,1664
+67,8,Energética Nitro 500ml,2,4218,8436,Limpieza,4218,4218
+68,94,Hilo Dental,4,1418,5672,Limpieza,1418,1418
+69,76,Pizza Congelada Muzzarella,4,4286,17144,Limpieza,4286,4286
+69,74,Whisky 750ml,3,2953,8859,Limpieza,2953,2953
+70,66,Cerveza Negra 1L,3,1533,4599,Limpieza,1533,1533
+70,89,Caldo Concentrado Verdura,4,1003,4012,Alimentos,1003,1003
+70,38,Mermelada de Frutilla 400g,3,1584,4752,Limpieza,1584,1584
+71,11,Café Molido 250g,3,2053,6159,Alimentos,2053,2053
+71,79,Hamburguesas Congeladas x4,4,2420,9680,Alimentos,2420,2420
+71,100,Trapo de Piso,4,4854,19416,Limpieza,4854,4854
+71,92,Crema Dental 90g,1,2512,2512,Limpieza,2512,2512
+72,94,Hilo Dental,3,1418,4254,Limpieza,1418,1418
+72,41,Aceite de Girasol 1L,4,860,3440,Alimentos,860,860
+72,51,Sal Fina 500g,2,1745,3490,Alimentos,1745,1745
+73,28,Papas Fritas Clásicas 100g,1,936,936,Limpieza,936,936
+73,24,Galletitas Chocolate,3,1305,3915,Limpieza,1305,1305
+73,19,Manteca 200g,1,3251,3251,Alimentos,3251,3251
+74,32,Chocolate Amargo 100g,3,2234,6702,Limpieza,2234,2234
+74,14,Leche Entera 1L,2,1723,3446,Limpieza,1723,1723
+74,55,Shampoo 400ml,2,1407,2814,Alimentos,1407,1407
+75,3,Sprite 1.5L,4,4964,19856,Alimentos,4964,4964
+75,2,Pepsi 1.5L,5,4973,24865,Limpieza,4973,4973
+76,22,Medialunas de Manteca,4,2069,8276,Limpieza,2069,2069
+76,23,Bizcochos Salados,4,2380,9520,Alimentos,2380,2380
+76,24,Galletitas Chocolate,1,1305,1305,Limpieza,1305,1305
+76,11,Café Molido 250g,2,2053,4106,Alimentos,2053,2053
+77,53,Lavandina 1L,2,1664,3328,Alimentos,1664,1664
+77,41,Aceite de Girasol 1L,1,860,860,Alimentos,860,860
+77,34,Turrón 50g,5,503,2515,Limpieza,503,503
+77,98,Desengrasante 500ml,2,2843,5686,Limpieza,2843,2843
+77,39,Helado Vainilla 1L,2,469,938,Alimentos,469,469
+78,37,Mermelada de Durazno 400g,3,3196,9588,Alimentos,3196,3196
+78,79,Hamburguesas Congeladas x4,5,2420,12100,Alimentos,2420,2420
+78,17,Queso Cremoso 500g,2,4834,9668,Alimentos,4834,4834
+78,85,Jugo en Polvo Naranja,1,1856,1856,Alimentos,1856,1856
+78,39,Helado Vainilla 1L,2,469,938,Alimentos,469,469
+79,81,Aceitunas Verdes 200g,2,2520,5040,Alimentos,2520,2520
+79,56,Papel Higiénico x4,2,2532,5064,Limpieza,2532,2532
+80,39,Helado Vainilla 1L,5,469,2345,Alimentos,469,469
+80,30,Maní Salado 200g,3,4875,14625,Limpieza,4875,4875
+80,41,Aceite de Girasol 1L,5,860,4300,Alimentos,860,860
+81,10,Yerba Mate Intensa 1kg,2,4883,9766,Limpieza,4883,4883
+82,38,Mermelada de Frutilla 400g,1,1584,1584,Limpieza,1584,1584
+82,28,Papas Fritas Clásicas 100g,2,936,1872,Limpieza,936,936
+82,29,Papas Fritas Onduladas 100g,5,1868,9340,Alimentos,1868,1868
+82,82,Aceitunas Negras 200g,2,2394,4788,Limpieza,2394,2394
+83,5,Agua Mineral 500ml,2,4777,9554,Alimentos,4777,4777
+83,26,Alfajor Triple,2,1001,2002,Limpieza,1001,1001
+83,73,Gin 700ml,5,1561,7805,Alimentos,1561,1561
+83,51,Sal Fina 500g,2,1745,3490,Alimentos,1745,1745
+84,83,Queso Untable 190g,5,1830,9150,Alimentos,1830,1830
+84,76,Pizza Congelada Muzzarella,4,4286,17144,Limpieza,4286,4286
+85,32,Chocolate Amargo 100g,4,2234,8936,Limpieza,2234,2234
+85,80,Helado de Frutilla 1L,2,1981,3962,Limpieza,1981,1981
+86,66,Cerveza Negra 1L,2,1533,3066,Limpieza,1533,1533
+86,1,Coca Cola 1.5L,4,2347,9388,Alimentos,2347,2347
+86,13,Té Verde 20 saquitos,5,2383,11915,Alimentos,2383,2383
+86,41,Aceite de Girasol 1L,3,860,2580,Alimentos,860,860
+87,53,Lavandina 1L,2,1664,3328,Alimentos,1664,1664
+87,86,Jugo en Polvo Limón,2,4090,8180,Limpieza,4090,4090
+88,7,Jugo de Manzana 1L,5,3269,16345,Alimentos,3269,3269
+88,53,Lavandina 1L,5,1664,8320,Alimentos,1664,1664
+88,8,Energética Nitro 500ml,4,4218,16872,Limpieza,4218,4218
+89,72,Ron 700ml,2,3876,7752,Limpieza,3876,3876
+90,79,Hamburguesas Congeladas x4,4,2420,9680,Alimentos,2420,2420
+90,6,Jugo de Naranja 1L,2,4170,8340,Limpieza,4170,4170
+91,57,Servilletas x100,3,4520,13560,Alimentos,4520,4520
+92,10,Yerba Mate Intensa 1kg,2,4883,9766,Limpieza,4883,4883
+92,43,Salsa de Tomate 500g,4,887,3548,Alimentos,887,887
+93,80,Helado de Frutilla 1L,4,1981,7924,Limpieza,1981,1981
+93,66,Cerveza Negra 1L,3,1533,4599,Limpieza,1533,1533
+93,91,Desodorante Aerosol,3,4690,14070,Alimentos,4690,4690
+94,24,Galletitas Chocolate,1,1305,1305,Limpieza,1305,1305
+94,86,Jugo en Polvo Limón,5,4090,20450,Limpieza,4090,4090
+94,98,Desengrasante 500ml,2,2843,5686,Limpieza,2843,2843
+95,72,Ron 700ml,5,3876,19380,Limpieza,3876,3876
+95,12,Té Negro 20 saquitos,1,570,570,Limpieza,570,570
+96,81,Aceitunas Verdes 200g,3,2520,7560,Alimentos,2520,2520
+96,68,Vino Blanco 750ml,1,2684,2684,Limpieza,2684,2684
+96,11,Café Molido 250g,2,2053,4106,Alimentos,2053,2053
+96,50,Azúcar 1kg,3,727,2181,Limpieza,727,727
+97,59,Chicle Menta,5,3612,18060,Alimentos,3612,3612
+97,36,Dulce de Leche 400g,1,2559,2559,Limpieza,2559,2559
+97,4,Fanta Naranja 1.5L,3,2033,6099,Limpieza,2033,2033
+98,28,Papas Fritas Clásicas 100g,4,936,3744,Limpieza,936,936
+98,61,Miel Pura 250g,1,4982,4982,Alimentos,4982,4982
+98,29,Papas Fritas Onduladas 100g,1,1868,1868,Alimentos,1868,1868
+98,83,Queso Untable 190g,3,1830,5490,Alimentos,1830,1830
+99,40,Helado Chocolate 1L,5,1215,6075,Limpieza,1215,1215
+100,13,Té Verde 20 saquitos,3,2383,7149,Alimentos,2383,2383
+100,18,Queso Rallado 150g,4,3444,13776,Limpieza,3444,3444
+100,58,Caramelos Masticables,2,4752,9504,Limpieza,4752,4752
+100,57,Servilletas x100,1,4520,4520,Alimentos,4520,4520
+100,9,Yerba Mate Suave 1kg,4,3878,15512,Alimentos,3878,3878
+101,34,Turrón 50g,4,503,2012,Limpieza,503,503
+102,78,Verduras Congeladas Mix,3,4289,12867,Limpieza,4289,4289
+102,36,Dulce de Leche 400g,3,2559,7677,Limpieza,2559,2559
+103,79,Hamburguesas Congeladas x4,5,2420,12100,Alimentos,2420,2420
+103,43,Salsa de Tomate 500g,5,887,4435,Alimentos,887,887
+103,34,Turrón 50g,1,503,503,Limpieza,503,503
+103,70,Fernet 750ml,1,4061,4061,Limpieza,4061,4061
+104,95,Mascarilla Capilar,2,1581,3162,Alimentos,1581,1581
+104,68,Vino Blanco 750ml,3,2684,8052,Limpieza,2684,2684
+104,68,Vino Blanco 750ml,5,2684,13420,Limpieza,2684,2684
+105,13,Té Verde 20 saquitos,2,2383,4766,Alimentos,2383,2383
+105,4,Fanta Naranja 1.5L,4,2033,8132,Limpieza,2033,2033
+105,58,Caramelos Masticables,2,4752,9504,Limpieza,4752,4752
+105,82,Aceitunas Negras 200g,4,2394,9576,Limpieza,2394,2394
+105,43,Salsa de Tomate 500g,5,887,4435,Alimentos,887,887
+106,88,Caldo Concentrado Carne,3,2570,7710,Limpieza,2570,2570
+107,7,Jugo de Manzana 1L,4,3269,13076,Alimentos,3269,3269
+107,11,Café Molido 250g,2,2053,4106,Alimentos,2053,2053
+107,12,Té Negro 20 saquitos,4,570,2280,Limpieza,570,570
+107,5,Agua Mineral 500ml,4,4777,19108,Alimentos,4777,4777
+108,90,Toallas Húmedas x50,4,2902,11608,Limpieza,2902,2902
+109,18,Queso Rallado 150g,1,3444,3444,Limpieza,3444,3444
+109,74,Whisky 750ml,1,2953,2953,Limpieza,2953,2953
+109,20,Pan Lactal Blanco,2,1571,3142,Limpieza,1571,1571
+109,44,Arroz Largo Fino 1kg,5,2979,14895,Limpieza,2979,2979
+110,6,Jugo de Naranja 1L,1,4170,4170,Limpieza,4170,4170
+110,59,Chicle Menta,3,3612,10836,Alimentos,3612,3612
+110,6,Jugo de Naranja 1L,5,4170,20850,Limpieza,4170,4170
+111,97,Limpiavidrios 500ml,4,872,3488,Alimentos,872,872
+111,93,Cepillo de Dientes,3,2142,6426,Alimentos,2142,2142
+111,20,Pan Lactal Blanco,2,1571,3142,Limpieza,1571,1571
+111,23,Bizcochos Salados,4,2380,9520,Alimentos,2380,2380
+112,55,Shampoo 400ml,1,1407,1407,Alimentos,1407,1407
+112,21,Pan Lactal Integral,4,272,1088,Alimentos,272,272
+112,43,Salsa de Tomate 500g,5,887,4435,Alimentos,887,887
+112,13,Té Verde 20 saquitos,2,2383,4766,Alimentos,2383,2383
+112,59,Chicle Menta,1,3612,3612,Alimentos,3612,3612
+113,53,Lavandina 1L,2,1664,3328,Alimentos,1664,1664
+113,92,Crema Dental 90g,3,2512,7536,Limpieza,2512,2512
+114,8,Energética Nitro 500ml,1,4218,4218,Limpieza,4218,4218
+114,84,Queso Azul 150g,1,1645,1645,Limpieza,1645,1645
+114,10,Yerba Mate Intensa 1kg,1,4883,4883,Limpieza,4883,4883
+114,55,Shampoo 400ml,5,1407,7035,Alimentos,1407,1407
+114,92,Crema Dental 90g,4,2512,10048,Limpieza,2512,2512
+115,17,Queso Cremoso 500g,4,4834,19336,Alimentos,4834,4834
+115,97,Limpiavidrios 500ml,5,872,4360,Alimentos,872,872
+115,95,Mascarilla Capilar,4,1581,6324,Alimentos,1581,1581
+115,84,Queso Azul 150g,2,1645,3290,Limpieza,1645,1645
+116,65,Cerveza Rubia 1L,1,2423,2423,Alimentos,2423,2423
+116,35,Barrita de Cereal 30g,2,4430,8860,Alimentos,4430,4430
+116,42,Vinagre de Alcohol 500ml,4,1195,4780,Limpieza,1195,1195
+116,54,Jabón de Tocador,5,1592,7960,Limpieza,1592,1592
+116,90,Toallas Húmedas x50,4,2902,11608,Limpieza,2902,2902
+117,67,Vino Tinto Malbec 750ml,4,4719,18876,Alimentos,4719,4719
+117,61,Miel Pura 250g,2,4982,9964,Alimentos,4982,4982
+118,68,Vino Blanco 750ml,5,2684,13420,Limpieza,2684,2684
+118,68,Vino Blanco 750ml,3,2684,8052,Limpieza,2684,2684
+118,70,Fernet 750ml,2,4061,8122,Limpieza,4061,4061
+118,93,Cepillo de Dientes,3,2142,6426,Alimentos,2142,2142
+118,50,Azúcar 1kg,2,727,1454,Limpieza,727,727
+119,45,Fideos Spaghetti 500g,5,745,3725,Alimentos,745,745
+120,20,Pan Lactal Blanco,5,1571,7855,Limpieza,1571,1571

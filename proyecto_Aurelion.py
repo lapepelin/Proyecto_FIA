@@ -50,11 +50,10 @@ def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Pat
     for nombre, stem in stems.items():
         ruta = _resolver_ruta(base_dir, stem)
         rutas[nombre] = ruta
-        parse_dates = ["fecha", "fecha_alta"] if nombre in {"clientes", "ventas"} else None
         if ruta.suffix.lower() == ".xlsx":
-            data[nombre] = pd.read_excel(ruta, parse_dates=parse_dates)
+            data[nombre] = pd.read_excel(ruta)
         else:
-            data[nombre] = pd.read_csv(ruta, parse_dates=parse_dates)
+            data[nombre] = pd.read_csv(ruta)
 
     return data, rutas
 
