@@ -182,4 +182,14 @@ flowchart TD
 
 - Uso de minúsculas en el pseudocodigo.
 - Archivo de requisitos.txt.
+
 - Reglas de validación de los datos.
+  
+## 5. Alcance de análisis estadístico
+
+- Estadísticas descriptivas básicas calculadas (tendencia central, dispersión y conteos por categorías clave).
+- Identificación del tipo de distribución de variables (ej. ventas por fecha, ticket promedio, categorías).
+- Análisis de correlaciones entre variables principales (ej. ticket promedio vs. frecuencia, precio vs. cantidad).
+- Detección de outliers (valores extremos) para importes, cantidades y frecuencia de compra.
+- Al menos 3 gráficos representativos que respalden los hallazgos.
+- Interpretación de resultados orientada al problema y a la toma de decisiones comerciales.
