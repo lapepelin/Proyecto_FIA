@@ -8,7 +8,6 @@ correlaciones, generación de gráficos.
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -61,11 +60,9 @@ def exportar_fuentes_csv(
     data: dict[str, pd.DataFrame], rutas: dict[str, Path], destino: Path
 ) -> None:
     """Convierte los Excel a CSV y los deja en un directorio plano.
-
     Los archivos mantienen el nombre original y no se crean subcarpetas.
     """
 
-    destino.mkdir(parents=True, exist_ok=True)
     for nombre, df in data.items():
         ruta_origen = rutas.get(nombre, Path())
         if ruta_origen.suffix.lower() == ".xlsx":
@@ -167,7 +164,6 @@ def estadisticas_descriptivas(ventas_detalle: pd.DataFrame) -> dict[str, pd.Seri
 
 def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
     """Genera histogramas y distribuciones básicas."""
-    salida.mkdir(parents=True, exist_ok=True)
     ventas_totales = ventas_detalle.groupby("id_venta")["importe"].sum()
 
     plt.figure(figsize=(8, 5))
@@ -197,7 +193,6 @@ def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
 
 def crear_correlaciones(ventas_detalle: pd.DataFrame, salida: Path) -> pd.DataFrame:
     """Calcula matriz de correlación y genera un heatmap."""
-    salida.mkdir(parents=True, exist_ok=True)
     num_cols = [c for c in ["cantidad", "precio_final", "importe"] if c in ventas_detalle.columns]
     corr = ventas_detalle[num_cols].corr()
 
@@ -211,8 +206,7 @@ def crear_correlaciones(ventas_detalle: pd.DataFrame, salida: Path) -> pd.DataFr
 
 def main() -> None:
     base_dir = Path(__file__).resolve().parent
-    salida = base_dir / "resultados"
-    salida.mkdir(exist_ok=True)
+    salida = base_dir
 
     data, rutas = cargar_datos(base_dir)
     data_limpia = limpiar_datos(data)

@@ -150,25 +150,7 @@ FIN
 
 ### Diagrama:
 
-```mermaid
-flowchart TD
-    A[Inicio] --> B[Cargar archivos Excel]
-    B --> C[Validar datos: nulos, tipos, fechas]
-    C --> D[Unir tablas<br/>Ventas + Detalle + Productos + Clientes]
-    D --> E[Calcular métricas<br/>ticket por venta, ticket promedio]
-    E --> F{Menú interactivo}
-    F -->|1| G[Ver métricas generales]
-    F -->|2| H[Consulta por cliente]
-    F -->|3| I[Consulta por categoría]
-    F -->|4| J[Top productos]
-    F -->|5| K[Exportar resultados]
-    F -->|0| L[Salir]
-    G --> F
-    H --> F
-    I --> F
-    J --> F
-    K --> F
-```
+Gráfico: `Diagrama.png`
 
 ## 4. Sugerencias Copilot
 
@@ -187,9 +169,77 @@ flowchart TD
   
 ## 5. Alcance de análisis estadístico
 
-- Estadísticas descriptivas básicas calculadas (tendencia central, dispersión y conteos por categorías clave).
-- Identificación del tipo de distribución de variables (ej. ventas por fecha, ticket promedio, categorías).
-- Análisis de correlaciones entre variables principales (ej. ticket promedio vs. frecuencia, precio vs. cantidad).
-- Detección de outliers (valores extremos) para importes, cantidades y frecuencia de compra.
-- Al menos 3 gráficos representativos que respalden los hallazgos.
-- Interpretación de resultados orientada al problema y a la toma de decisiones comerciales.
+### 5.1 Estadísticas descriptivas
+
+Se calcularon métricas de tendencia central y dispersión para entender el volumen y comportamiento general de las ventas:
+
+- **Ventas registradas:** 120  
+- **Monto total vendido:** S/ 2,651,417  
+- **Ticket promedio por venta:** S/ 22,095.14  
+- **Productos distintos vendidos:** 95  
+- **Clientes distintos:** 67  
+
+Estas métricas muestran un modelo de ventas con **pocas transacciones pero de alto valor**, lo cual incrementa de manera importante el ticket promedio.
+
+### 5.2 Distribución de variables principales
+
+El histograma del **ticket por venta** evidencia una **distribución sesgada hacia la derecha**, típica en negocios donde existen tickets elevados pero poco frecuentes.
+
+Hallazgos clave:
+
+- La mayor parte de las ventas se concentra entre **S/ 10,000 y S/ 25,000**.  
+- Existen tickets altos (hasta ~S/ 60,000) que funcionan como **outliers positivos**.  
+- La curva KDE refuerza la presencia de una cola hacia la derecha, indicando ventas atípicas de alto valor.
+
+**Gráfico:** `distribucion_ticket.png`
+
+### 5.3 Correlaciones
+
+Se evaluaron las relaciones entre las variables numéricas *cantidad*, *precio_final* e *importe*:
+
+- **Cantidad vs. Importe:** correlación positiva (~0.60).  
+  Esto indica que, en general, **compras con más unidades generan mayores importes**, como es lógico.
+
+- **Precio final vs. Importe:** correlación positiva más fuerte (~0.68).  
+  Los productos de mayor precio tienden a generar tickets totales más altos.
+
+- **Cantidad vs. Precio final:** correlación ligeramente negativa (~–0.07).  
+  Sugiere que **productos más caros se compran en menores cantidades**, lo que es consistente con comportamientos de compra racionales.
+
+**Gráfico:** `correlaciones.png`
+
+### 5.4 Outliers
+
+El análisis visual reveló la presencia de valores extremos, principalmente:
+
+- **Tickets de venta superiores a S/ 40,000**, poco frecuentes.  
+- **Variaciones excepcionales en la cantidad adquirida**, asociadas a compras puntuales.  
+- **Categorías con importes acumulados atípicamente altos** (observado en el análisis de categorías).
+
+Estos outliers pueden deberse a **ventas especiales, compras mayoristas o pedidos corporativos**.
+
+### 5.5 Gráficos representativos
+
+Los gráficos que resumen los hallazgos del análisis son:
+
+1. **Distribución del ticket por venta** (`distribucion_ticket.png`)  
+2. **Ventas por medio de pago** (`ventas_por_medio_pago.png`)  
+3. **Heatmap de correlaciones** (`correlaciones.png`)  
+
+Cada visualización aporta un enfoque distinto:  
+- distribución de ventas,  
+- comportamiento de medios de pago,  
+- relación entre variables numéricas.
+
+### 5.6 Interpretación orientada al negocio
+
+El análisis evidencia que Tienda Aurelion opera con un **modelo de ventas de alto valor**, donde un número reducido de transacciones representa una elevada facturación total.
+
+La combinación de productos premium, compras en volúmenes moderados y la presencia de tickets extraordinariamente altos sugiere oportunidades en:
+
+- **optimización de precios**,  
+- **segmentación de clientes de alto valor**,  
+- **promociones dirigidas según medio de pago**,  
+- **enfoque en categorías con mayor aporte a la facturación**.
+
+Los resultados permiten comprender mejor el comportamiento de compra y las variables que impulsan los ingresos.
