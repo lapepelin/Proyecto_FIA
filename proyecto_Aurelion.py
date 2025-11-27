@@ -13,18 +13,12 @@ import seaborn as sns
 
 
 def _resolver_ruta(base_dir: Path, stem: str) -> Path:
-    """Encuentra el archivo disponible para un dataset.
+    """Encuentra el archivo Excel disponible para un dataset."""
 
-    Prioriza ``.xlsx`` (los archivos entregados) y acepta ``.csv`` como
-    respaldo para mantener compatibilidad con ejecuciones previas.
-    """
-
-    for ext in (".xlsx", ".csv"):
-        ruta = base_dir / f"{stem}{ext}"
-        if ruta.exists():
-            return ruta
-    raise FileNotFoundError(f"No se encontró {stem}.xlsx ni {stem}.csv en {base_dir}")
-
+    ruta = base_dir / f"{stem}.xlsx"
+    if ruta.exists():
+        return ruta
+    raise FileNotFoundError(f"No se encontró {stem}.xlsx en {base_dir}")
 
 def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Path]]:
     """Carga los archivos de clientes, ventas, detalle y productos.
@@ -48,10 +42,7 @@ def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Pat
     for nombre, stem in stems.items():
         ruta = _resolver_ruta(base_dir, stem)
         rutas[nombre] = ruta
-        if ruta.suffix.lower() == ".xlsx":
-            data[nombre] = pd.read_excel(ruta)
-        else:
-            data[nombre] = pd.read_csv(ruta)
+        data[nombre] = pd.read_excel(ruta)
 
     return data, rutas
 
@@ -110,24 +101,6 @@ def limpiar_datos(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
             detalle = detalle[detalle[col] >= 0]
     if "precio_unitario" in productos:
         productos = productos[productos["precio_unitario"] >= 0]
-
-    # Recalcular importe cuando falte o sea 0
-    if {"cantidad", "precio_unitario"}.issubset(detalle.columns):
-        detalle["importe_recalculado"] = detalle["cantidad"] * detalle["precio_unitario"]
-        if "importe" not in detalle:
-            detalle["importe"] = detalle["importe_recalculado"]
-        else:
-            detalle["importe"] = detalle["importe"].fillna(detalle["importe_recalculado"])
-        detalle = detalle.drop(columns=["importe_recalculado"], errors="ignore")
-
-    # Unificación
-    detalle = detalle.merge(
-        productos[["id_producto", "categoria", "precio_unitario"]].rename(columns={"precio_unitario": "precio_catalogo"}),
-        on="id_producto",
-        how="left",
-    )
-    detalle["precio_final"] = detalle["precio_unitario"].fillna(detalle["precio_catalogo"])
-    detalle["importe"] = detalle["importe"].fillna(detalle["cantidad"] * detalle["precio_final"])
 
     ventas_detalle = ventas.merge(detalle, on="id_venta", how="left", suffixes=("_venta", "_detalle"))
     ventas_detalle = ventas_detalle.merge(clientes, on="id_cliente", how="left", suffixes=("", "_cliente"))
@@ -193,7 +166,7 @@ def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
 
 def crear_correlaciones(ventas_detalle: pd.DataFrame, salida: Path) -> pd.DataFrame:
     """Calcula matriz de correlación y genera un heatmap."""
-    num_cols = [c for c in ["cantidad", "precio_final", "importe"] if c in ventas_detalle.columns]
+    num_cols = [c for c in ["cantidad", "importe"] if c in ventas_detalle.columns]
     corr = ventas_detalle[num_cols].corr()
 
     plt.figure(figsize=(6, 4))
