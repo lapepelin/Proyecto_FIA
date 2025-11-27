@@ -48,13 +48,29 @@ def menu_planteamiento():
 
         if opcion == "1":
             print("\nTEMA:")
-            print("Análisis del comportamiento de compra de los clientes en Tienda Aurelion, con el objetivo de identificar patrones que optimicen la experiencia de compra y el valor promedio por cliente, a partir de las ventas registradas entre enero y junio de 2024, utilizando la base de datos de Clientes, Ventas, Detalle_ventas y Productos.")
+            print(
+                "Análisis del comportamiento de compra de los clientes en Tienda Aurelion, "
+                "con el objetivo de identificar patrones que optimicen la experiencia de compra "
+                "y el valor promedio por cliente, a partir de las ventas registradas entre enero "
+                "y junio de 2024, utilizando la base de datos de Clientes, Ventas, Detalle_ventas "
+                "y Productos."
+            )
         elif opcion == "2":
             print("\nPROBLEMA:")
-            print("En Tienda Aurelion no se cuenta con un análisis que permita comprender los factores que determinan el valor promedio de compra. La falta de métricas consolidadas dificulta la toma de decisiones comerciales y estratégicas, como la planificación de promociones, la definición de productos complementarios y la fidelización de clientes con mayor potencial de gasto.")
+            print(
+                "En Tienda Aurelion no se cuenta con un análisis que permita comprender los factores "
+                "que determinan el valor promedio de compra. La falta de métricas consolidadas dificulta "
+                "la toma de decisiones comerciales y estratégicas, como la planificación de promociones, "
+                "la definición de productos complementarios y la fidelización de clientes con mayor potencial de gasto."
+            )
         elif opcion == "3":
             print("\nSOLUCIÓN:")
-            print("Se propone desarrollar una herramienta analítica interactiva en Python que integre y analice los datos de Clientes, Ventas, Detalle_ventas y Productos. El sistema permitirá identificar patrones de compra, calcular indicadores como el ticket promedio por cliente o producto, y ofrecer una visión integral del rendimiento comercial.Con esta información, la empresa podrá diseñar estrategias más efectivas, optimizar promociones y fortalecer la relación con sus clientes claves.")
+            print(
+                "Se desarrolla una herramienta analítica interactiva en Python que integra y analiza los datos de Clientes, "
+                "Ventas, Detalle_ventas y Productos. El sistema identifica patrones de compra, calcula indicadores como el ticket "
+                "promedio por cliente o producto y ofrece una visión integral del rendimiento comercial. Con esta información, la "
+                "empresa puede diseñar estrategias más efectivas, optimizar promociones y fortalecer la relación con sus clientes clave."
+            )
         elif opcion == "0":
             break
         else:
@@ -75,10 +91,16 @@ def menu_base_datos():
 
         if opcion == "1":
             print("\nFUENTE:")
-            print("Los datos utilizados provienen de los archivos Clientes.xlsx, Ventas.xlsx, Detalle_ventas.xlsx y Productos.xlsx, brindados por el programa Fundamentos en Inteligencia Artificial – IBM SkillsBuild & Guayerd (2025).")
+            print(
+                "Los datos provienen de los archivos Clientes.xlsx, Ventas.xlsx, Detalle_ventas.xlsx "
+                "y Productos.xlsx, brindados por el programa Fundamentos en Inteligencia Artificial – IBM SkillsBuild & Guayerd (2025)."
+            )
         elif opcion == "2":
             print("\nDEFINICIÓN:")
-            print("La base de datos representa la información comercial de Tienda Aurelion, integrando los registros de clientes, productos y ventas realizadas entre enero y junio de 2024. Su propósito es centralizar los datos necesarios para analizar el ticket promedio, la frecuencia de compra y los patrones de consumo.")
+            print(
+                "La base de datos integra los registros de clientes, productos y ventas realizadas entre enero y junio de 2024. "
+                "Su propósito es centralizar los datos necesarios para analizar el ticket promedio, la frecuencia de compra y los patrones de consumo."
+            )
         elif opcion == "3":
             print("\nESTRUCTURA:")
             print("El modelo está compuesto por cuatro tablas principales: \n")
@@ -92,7 +114,10 @@ def menu_base_datos():
                   "- id_producto (Productos → Detalle_ventas)")
         elif opcion == "4":
             print("\nTIPOS:")
-            print("Los datos son estructurados y almacenados en formato .xlsx. Incluyen variables numéricas, de texto y de fecha, adecuadas para su procesamiento en Python.")
+            print(
+                "Los datos son estructurados y almacenados en formato .xlsx. Incluyen variables numéricas, "
+                "de texto y de fecha, adecuadas para su procesamiento en Python."
+            )
         elif opcion == "5":
             print("\nESCALA:")
             print("- Nominal: nombres, categorías, medios de pago.\n"
@@ -116,14 +141,15 @@ def menu_programa():
 
         if opcion == "1":
             print("\nPASOS:")
-            print("1. Detectar y cargar archivos .xlsx, con alternativa .csv si no están disponibles.\n"
-                  "2. Normalizar nombres/tipos, eliminar duplicados y registros con claves faltantes,\n"
-                  "   asegurar valores positivos y recalcular importes faltantes.\n"
-                  "3. Unificar Detalle_ventas con Productos y Clientes para construir ventas_detalle.\n"
-                  "4. Exportar las fuentes a CSV y guardar versiones *_limpio.csv depuradas.\n"
-                  "5. Calcular métricas descriptivas: resumen general, ticket por venta/cliente e importe por categoría.\n"
-                  "6. Generar visualizaciones: distribución del ticket, ventas por medio de pago y matriz de correlación.\n"
-                  "7. Guardar las métricas en CSV e imprimir el resumen general en consola.")
+            print(
+                "1. Detectar y cargar las fuentes de datos, priorizando archivos .xlsx y aceptando .csv como respaldo.\n"
+                "2. Normalizar nombres/tipos, eliminar duplicados y registros con claves faltantes, asegurar valores positivos y recalcular importes faltantes.\n"
+                "3. Unificar Detalle_ventas con Productos y Clientes para construir ventas_detalle.\n"
+                "4. Exportar las fuentes a CSV y guardar versiones *_limpio.csv depuradas.\n"
+                "5. Calcular métricas descriptivas: resumen general, ticket por venta/cliente e importe por categoría.\n"
+                "6. Generar visualizaciones: distribución del ticket, ventas por medio de pago y matriz de correlación.\n"
+                "7. Guardar las métricas en CSV e imprimir el resumen general en consola."
+            )
         elif opcion == "2":
             print("\nPSEUDOCÓDIGO:")
             print("INICIO\n"
@@ -165,6 +191,8 @@ def menu_estadisticas():
         print("1. Estadísticas descriptivas")
         print("2. Distribución de variables principales")
         print("3. Correlaciones")
+        print("4. Outliers")
+        print("5. Interpretación orientada al negocio")
         print("0. Volver al menú principal")
         opcion = input("\nSeleccione una opción: ")
 
@@ -185,8 +213,23 @@ def menu_estadisticas():
             display(Image(filename='ventas_por_medio_pago.png'))
         elif opcion == "3":
             print("\nCORRELACIONES:")
-            print("Se analiza la relación entre cantidad, precio_final e importe, mostrando el heatmap generado.")
+            print(
+                "Se analizan las relaciones entre las variables numéricas disponibles en el detalle (por defecto, cantidad e importe). "
+                "Si el dataset incluye precios finales, también se incorporan al cálculo para el heatmap."
+            )
             display(Image(filename='correlaciones.png'))
+        elif opcion == "4":
+            print("\nOUTLIERS:")
+            print(
+                "Se identifican tickets de venta superiores a S/ 40,000, variaciones excepcionales en la cantidad adquirida "
+                "y categorías con importes acumulados atípicamente altos, asociados a ventas especiales o pedidos corporativos."
+            )
+        elif opcion == "5":
+            print("\nINTERPRETACIÓN ORIENTADA AL NEGOCIO:")
+            print(
+                "El modelo de ventas combina pocas transacciones con montos elevados. Se recomienda optimizar precios, "
+                "segmentar clientes de alto valor, diseñar promociones según medio de pago y reforzar las categorías con mayor aporte."
+            )
         elif opcion == "0":
             break
         else:
@@ -204,7 +247,7 @@ def menu_copilot():
 
         if opcion == "1":
             print("\nACEPTADAS:")
-            print("- Correción de ortografía y redacción.\n"
+            print("- Corrección de ortografía y redacción.\n"
                   "- Detalle con precisión de la base de datos.\n"
                   "- División por secciones.")
         elif opcion == "2":
