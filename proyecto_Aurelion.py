@@ -102,6 +102,20 @@ def limpiar_datos(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     if "precio_unitario" in productos:
         productos = productos[productos["precio_unitario"] >= 0]
 
+    # Enriquecer el detalle con información del catálogo de productos
+    if "id_producto" in detalle.columns and "id_producto" in productos.columns:
+        columnas_productos = [
+            col
+            for col in ("id_producto", "categoria", "precio_unitario")
+            if col in productos.columns
+        ]
+        productos_unicos = productos[columnas_productos].drop_duplicates(
+            subset=["id_producto"]
+        )
+        detalle = detalle.merge(
+            productos_unicos, on="id_producto", how="left", suffixes=("", "_prod")
+        )
+
     ventas_detalle = ventas.merge(detalle, on="id_venta", how="left", suffixes=("_venta", "_detalle"))
     ventas_detalle = ventas_detalle.merge(clientes, on="id_cliente", how="left", suffixes=("", "_cliente"))
 
@@ -117,7 +131,10 @@ def estadisticas_descriptivas(ventas_detalle: pd.DataFrame) -> dict[str, pd.Seri
     """Calcula métricas descriptivas clave."""
     ventas_totales = ventas_detalle.groupby("id_venta")["importe"].sum()
     ticket_por_cliente = ventas_detalle.groupby("id_cliente")["importe"].sum()
-    ticket_por_categoria = ventas_detalle.groupby("categoria")["importe"].sum()
+    if "categoria" in ventas_detalle.columns:
+        ticket_por_categoria = ventas_detalle.groupby("categoria")["importe"].sum()
+    else:
+        ticket_por_categoria = pd.Series(dtype=float)
 
     resumen_general = pd.Series({
         "ventas_registradas": ventas_totales.shape[0],
