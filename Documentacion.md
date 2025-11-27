@@ -58,27 +58,19 @@ Incluyen variables numéricas, de texto y de fecha, adecuadas para su procesamie
 
 ### Pasos:
 
-1. Cargar datos: leer Clientes.xlsx, Ventas.xlsx, Detalle_ventas.xlsx, Productos.xlsx.
+1. Detectar y cargar las fuentes de datos, priorizando los archivos `.xlsx` y aceptando `.csv` como respaldo.
 
-2. Validar: tipos (fechas/números), nulos, duplicados clave, cantidades/precios > 0, fechas dentro de enero y junio 2024.
+2. Normalizar nombres y tipos de columnas, eliminar duplicados, descartar registros con claves faltantes y asegurar valores positivos en cantidades/precios. Se recalculan importes faltantes y se sincronizan precios con el catálogo de productos.
 
-3. Unir:
+3. Unificar Detalle_ventas con Productos (por `id_producto`) y con Clientes (por `id_cliente`) para obtener la tabla consolidada `ventas_detalle`.
 
-    Ventas ↔ Detalle_ventas (por id_venta)
-    Ventas ↔ Clientes (por id_cliente)
-    Ventas ↔ Productos (por id_producto)
+4. Exportar los archivos fuente a CSV y generar versiones limpias (`*_limpio.csv`).
 
-4. Calcular métricas:
+5. Calcular métricas descriptivas: resumen general, ticket por venta, ticket por cliente e importe por categoría.
 
-    -Importe línea = cantidad * precio_unitario
-    -Ticket por venta = suma importes por id_venta
-    -Ticket promedio por cliente y por categoría
+6. Generar visualizaciones: distribución del ticket por venta, ventas por medio de pago y matriz de correlación.
 
-5. Consultas interactivas (menú): Generales, por cliente, por categoría, top productos.
-
-6. Exportar resultados filtrados (CSV/XLSX).
-
-7. Registrar errores/advertencias (log simple).
+7. Guardar las salidas en CSV (`resumen_general.csv`, `ticket_por_venta.csv`, etc.) e imprimir el resumen general en consola.
 
 ### Pseudocódigo:
 
@@ -90,59 +82,39 @@ INICIO
     ESCRIBIR "Cargando datos..."
 
     // 1. CARGA DE DATOS
-    LEER archivo CLIENTES.xlsx
-    LEER archivo VENTAS.xlsx
-    LEER archivo DETALLE_VENTAS.xlsx
-    LEER archivo PRODUCTOS.xlsx
+    LEER CLIENTES.xlsx (o CSV) → df_clientes
+    LEER VENTAS.xlsx (o CSV) → df_ventas
+    LEER DETALLE_VENTAS.xlsx (o CSV) → df_detalle
+    LEER PRODUCTOS.xlsx (o CSV) → df_productos
 
-    // 2. VALIDACIONES BÁSICAS
-    VALIDAR que no existan campos nulos en claves principales
-    VALIDAR que las fechas estén entre ENERO y JUNIO de 2024
-    VALIDAR que precios y cantidades sean mayores a 0
+    // 2. LIMPIEZA Y TIPOS
+    NORMALIZAR nombres de columnas en minúsculas
+    CONVERTIR fechas y montos numéricos
+    ELIMINAR duplicados
+    DESCARTAR registros con claves nulas y valores negativos
+    RECALCULAR importes faltantes a partir de cantidad * precio
 
-    // 3. UNIÓN DE TABLAS
-    UNIR VENTAS con DETALLE_VENTAS por id_venta
-    UNIR resultado con PRODUCTOS por id_producto
-    UNIR resultado con CLIENTES por id_cliente
+    // 3. UNIFICACIÓN
+    UNIR df_detalle con df_productos (id_producto)
+    UNIR con df_clientes (id_cliente)
+    OBTENER tabla ventas_detalle
 
-    // 4. CÁLCULOS PRINCIPALES
-    PARA cada registro EN tabla_unida HACER
-        importe_linea ← cantidad * precio_unitario
-    FIN PARA
+    // 4. EXPORTACIONES
+    GUARDAR versiones CSV de las fuentes
+    GUARDAR archivos *_limpio.csv con datos depurados
 
-    AGRUPAR por id_venta → calcular total_venta
-    AGRUPAR por id_cliente → calcular ticket_promedio_cliente
-    AGRUPAR por categoria → calcular ticket_promedio_categoria
+    // 5. MÉTRICAS
+    CALCULAR ventas_registradas, monto_total, ticket_promedio
+    CALCULAR ticket_por_venta, ticket_por_cliente, importe_por_categoria
 
-    // 5. MENÚ INTERACTIVO
-    REPETIR
-        ESCRIBIR "1. Ver métricas generales"
-        ESCRIBIR "2. Consultar por cliente"
-        ESCRIBIR "3. Consultar por categoría"
-        ESCRIBIR "4. Ver top productos"
-        ESCRIBIR "5. Exportar resultados"
-        ESCRIBIR "0. Salir"
-        LEER opcion
+    // 6. VISUALIZACIONES
+    CREAR histograma del ticket por venta
+    CREAR gráfico de ventas por medio de pago
+    CREAR heatmap de correlaciones
 
-        SEGÚN opcion HACER
-            CASO 1:
-                MOSTRAR ticket_promedio_global, top_clientes, top_categorias
-            CASO 2:
-                LEER id_cliente
-                MOSTRAR ventas y ticket del cliente
-            CASO 3:
-                LEER categoria
-                MOSTRAR ticket promedio y productos más vendidos
-            CASO 4:
-                MOSTRAR productos con mayor importe_total
-            CASO 5:
-                EXPORTAR resultados a archivo Excel
-            CASO 0:
-                ESCRIBIR "Programa finalizado."
-            DE OTRO MODO:
-                ESCRIBIR "Opción no válida"
-        FINSEGÚN
-    HASTA opcion = 0
+    // 7. SALIDAS
+    EXPORTAR CSV de métricas y matriz de correlación
+    IMPRIMIR resumen_general en consola
 
 FIN
 
@@ -192,6 +164,10 @@ Hallazgos clave:
 - La curva KDE refuerza la presencia de una cola hacia la derecha, indicando ventas atípicas de alto valor.
 
 **Gráfico:** `distribucion_ticket.png`
+
+El gráfico de barras de **ventas por medio de pago** muestra la preferencia relativa de cada opción registrada en las ventas únicas.
+
+**Gráfico:** `ventas_por_medio_pago.png`
 
 ### 5.3 Correlaciones
 

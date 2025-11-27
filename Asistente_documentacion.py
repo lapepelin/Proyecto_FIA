@@ -15,6 +15,7 @@ def menu_principal():
         print("2. Base de Datos")
         print("3. Programa en Python")
         print("4. Sugerencias Copilot")
+        print("5. Alcance de análisis estadístico")
         print("0. Salir")
         opcion = input("\nSeleccione una opción: ")
 
@@ -26,6 +27,8 @@ def menu_principal():
             menu_programa()
         elif opcion == "4":
             menu_copilot()
+        elif opcion == "5":
+            menu_estadisticas()
         elif opcion == "0":
             print("\nCerrando el asistente.")
             break
@@ -113,77 +116,77 @@ def menu_programa():
 
         if opcion == "1":
             print("\nPASOS:")
-            print("1. Cargar datos: leer Clientes.xlsx, Ventas.xlsx, Detalle_ventas.xlsx, Productos.xlsx.\n"
-                  "2. Validar: tipos (fechas/números), nulos, duplicados clave, cantidades/precios > 0, fechas dentro de enero y junio 2024.\n"
-                  "3. Unir:\n"
-                  "   Ventas ↔ Detalle_ventas (por id_venta)\n"
-                  "   Ventas ↔ Clientes (por id_cliente)\n"
-                  "   Ventas ↔ Productos (por id_producto)\n"
-                  "4. Calcular métricas:\n"
-                  "   - Importe línea = cantidad * precio_unitario\n"
-                  "   - Ticket por venta = suma importes por id_venta\n"
-                  "   - Ticket promedio por cliente y por categoría\n"
-                  "5. Consultas interactivas:\n"
-                  "   Generales, por cliente, por categoría, top productos.\n"
-                  "6. Exportar resultados filtrados (CSV/XLSX).\n"
-                  "7. Registrar errores/advertencias (log simple).")
+            print("1. Detectar y cargar archivos .xlsx, con alternativa .csv si no están disponibles.\n"
+                  "2. Normalizar nombres/tipos, eliminar duplicados y registros con claves faltantes,\n"
+                  "   asegurar valores positivos y recalcular importes faltantes.\n"
+                  "3. Unificar Detalle_ventas con Productos y Clientes para construir ventas_detalle.\n"
+                  "4. Exportar las fuentes a CSV y guardar versiones *_limpio.csv depuradas.\n"
+                  "5. Calcular métricas descriptivas: resumen general, ticket por venta/cliente e importe por categoría.\n"
+                  "6. Generar visualizaciones: distribución del ticket, ventas por medio de pago y matriz de correlación.\n"
+                  "7. Guardar las métricas en CSV e imprimir el resumen general en consola.")
         elif opcion == "2":
             print("\nPSEUDOCÓDIGO:")
             print("INICIO\n"
                   "      ESCRIBIR \"=== ANÁLISIS DE VENTAS - TIENDA AURELION ===\"\n"
                   "      ESCRIBIR \"Cargando datos...\"\n\n"
                   "      // 1. CARGA DE DATOS \n"
-                  "      LEER archivo CLIENTES.xlsx\n"
-                  "      LEER archivo VENTAS.xlsx\n"
-                  "      LEER archivo DETALLE_VENTAS.xlsx\n"
-                  "      LEER archivo PRODUCTOS.xlsx\n\n"
-                  "     // 2. VALIDACIONES BÁSICAS"
-                  "     VALIDAR que no existan campos nulos en claves principales\n"
-                  "     VALIDAR que las fechas estén entre ENERO y JUNIO de 2024\n"
-                  "     VALIDAR que precios y cantidades sean mayores a 0\n\n"
-                  "     // 3. UNIÓN DE TABLAS\n"
-                  "     UNIR VENTAS con DETALLE_VENTAS por id_venta\n"
-                  "     UNIR resultado con PRODUCTOS por id_producto\n"
-                  "     UNIR resultado con CLIENTES por id_cliente\n\n"
-                  "     // 4. CÁLCULOS PRINCIPALES\n"
-                  "     PARA cada registro EN tabla_unida HACER\n"
-                  "       importe_linea ← cantidad * precio_unitario\n"
-                  "     FIN PARA\n"
-                  "     AGRUPAR por id_venta → calcular total_venta\n"
-                  "     AGRUPAR por id_cliente → calcular ticket_promedio_cliente\n"
-                  "     AGRUPAR por categoria → calcular ticket_promedio_categoria\n\n"
-                  "     // 5. MENÚ INTERACTIVO\n"
-                  "     REPETIR\n"
-                  "         ESCRIBIR \"1. Ver métricas generales\"\n"
-                  "         ESCRIBIR \"2. Consultar por cliente\"\n"
-                  "         ESCRIBIR \"3. Consultar por categoría\"\n"
-                  "         ESCRIBIR \"4. Ver top productos\"\n"
-                  "         ESCRIBIR \"5. Exportar resultados\"\n"
-                  "         ESCRIBIR \"0. Salir\"\n"
-                  "         LEER opcion\n\n"
-                  "         SEGÚN opcion HACER\n"
-                  "             CASO 1:\n"
-                  "                 MOSTRAR ticket_promedio_global, top_clientes, top_categorias\n"
-                  "             CASO 2:\n"
-                  "                 LEER id_cliente\n"
-                  "                 MOSTRAR ventas y ticket del cliente\n"
-                  "             CASO 3:\n"
-                  "                 LEER categoria\n"
-                  "                 MOSTRAR ticket promedio y productos más vendidos\n"
-                  "             CASO 4:\n"
-                  "                 MOSTRAR productos con mayor importe_total\n"
-                  "             CASO 5:\n"
-                  "                 EXPORTAR resultados a archivo Excel\n"
-                  "             CASO 0:\n"
-                  "                 ESCRIBIR \"Programa finalizado.\"\n"
-                  "             DE OTRO MODO:\n"
-                  "                 ESCRIBIR \"Opción no válida\"\n"
-                  "         FINSEGÚN\n"
-                  "     HASTA opcion = 0\n\n"
+                  "      LEER CLIENTES.xlsx/CSV, VENTAS.xlsx/CSV, DETALLE_VENTAS.xlsx/CSV, PRODUCTOS.xlsx/CSV\n\n"
+                  "      // 2. LIMPIEZA Y TIPOS\n"
+                  "      NORMALIZAR columnas, convertir fechas y montos\n"
+                  "      ELIMINAR duplicados y registros sin claves\n"
+                  "      RECALCULAR importes faltantes\n\n"
+                  "      // 3. UNIFICACIÓN\n"
+                  "      UNIR detalle + productos por id_producto\n"
+                  "      UNIR con clientes por id_cliente → ventas_detalle\n\n"
+                  "      // 4. EXPORTACIONES\n"
+                  "      GUARDAR fuentes en CSV\n"
+                  "      GUARDAR archivos *_limpio.csv\n\n"
+                  "      // 5. MÉTRICAS\n"
+                  "      CALCULAR resumen_general, ticket_por_venta, ticket_por_cliente, importe_por_categoria\n\n"
+                  "      // 6. VISUALIZACIONES\n"
+                  "      GENERAR histograma, gráfico por medio de pago y heatmap de correlaciones\n\n"
+                  "      // 7. SALIDAS\n"
+                  "      EXPORTAR CSV de métricas y correlaciones\n"
+                  "      IMPRIMIR resumen_general\n\n"
                   "FIN")
         elif opcion == "3":
             print("\nDIAGRAMA:")
             display(Image(filename='Diagrama.png'))
+        elif opcion == "0":
+            break
+        else:
+            print("Opción no válida.")
+
+# 5. ALCANCE DE ANÁLISIS ESTADÍSTICO
+
+def menu_estadisticas():
+    while True:
+        print("\n5. ALCANCE DE ANÁLISIS ESTADÍSTICO")
+        print("1. Estadísticas descriptivas")
+        print("2. Distribución de variables principales")
+        print("3. Correlaciones")
+        print("0. Volver al menú principal")
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+            print("\nESTADÍSTICAS DESCRIPTIVAS:")
+            print("- Ventas registradas: 120\n"
+                  "- Monto total vendido: S/ 2,651,417\n"
+                  "- Ticket promedio por venta: S/ 22,095.14\n"
+                  "- Productos distintos vendidos: 95\n"
+                  "- Clientes distintos: 67\n\n"
+                  "Interpretación: ventas de alto valor con pocas transacciones, lo que eleva el ticket promedio.")
+        elif opcion == "2":
+            print("\nDISTRIBUCIÓN DE VARIABLES PRINCIPALES:")
+            print("- El histograma del ticket por venta está sesgado a la derecha, con la mayoría entre S/ 10,000 y S/ 25,000.\n"
+                  "- Hay tickets altos (~S/ 60,000) que actúan como outliers positivos.\n"
+                  "- Se incluye un gráfico de ventas por medio de pago para comparar preferencias.")
+            display(Image(filename='distribucion_ticket.png'))
+            display(Image(filename='ventas_por_medio_pago.png'))
+        elif opcion == "3":
+            print("\nCORRELACIONES:")
+            print("Se analiza la relación entre cantidad, precio_final e importe, mostrando el heatmap generado.")
+            display(Image(filename='correlaciones.png'))
         elif opcion == "0":
             break
         else:
