@@ -196,3 +196,42 @@ La combinación de productos premium, compras en volúmenes moderados y la prese
 - **Enfoque en categorías con mayor aporte a la facturación**.
 
 Los resultados permiten comprender mejor el comportamiento de compra y las variables que impulsan los ingresos.
+
+## 6. Modelo de Machine Learning
+
+### 6.1 Objetivo (predecir o clasificar)
+
+El objetivo es predecir el importe total de una venta (variable continua).
+
+### 6.2 Algoritmo elegido y justificación
+
+Algoritmo elegido: Regresión Lineal.
+
+Justificación: Existe una relación lineal clara entre la cantidad de productos, su precio unitario y el importe total.
+
+### 6.3 Entradas (X) y salida (y)
+
+- Entradas (X): cantidad, precio_unitario y categoria.
+
+- Salida (y): importe (el monto total de la transacción).
+
+### 6.4 Métricas de evaluación
+
+- MAE (Error Absoluto Medio)
+- MSE (Error Cuadrático Medio)
+- R^2 (Coeficiente de Determinación)
+
+### 6.5 Modelo ML implementado
+
+Implementamos una Regresión Lineal Múltiple usando la librería scikit-learn
+
+### 6.6 División train/test y entrenamiento
+
+El 80% de los datos (el entrenamiento) se usó para que el modelo aprenda los patrones.
+
+El 20% restante (el test) no se le mostró al modelo para evaluarlo después con datos que nunca vio.
+
+### 6.7 Predicciones y métricas calculadas
+
+### 6.8 Resultados en gráficos
+

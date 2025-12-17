@@ -11,6 +11,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+
 
 def _resolver_ruta(base_dir: Path, stem: str) -> Path:
     """Encuentra el archivo Excel disponible para un dataset."""
@@ -222,6 +227,26 @@ def main() -> None:
 
     print("=== Estadísticas descriptivas ===")
     print(stats["resumen_general"].to_string())
+
+    # 1. Preparar los datos (unificar detalle con categorías de productos)
+    df_ml = df_detalle.merge(df_productos[['id_producto', 'categoria']], on='id_producto', how='left')
+    df_ml = pd.get_dummies(df_ml, columns=['categoria'], drop_first=True)
+
+    # 2. Definir variables
+    X = df_ml[['cantidad', 'precio_unitario'] + [col for col in df_ml.columns if 'categoria_' in col]]
+    y = df_ml['importe']
+
+    # 3. Dividir en entrenamiento y prueba (80/20)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # 4. Entrenar al "esclavo" (el modelo)
+    modelo_aurelion = LinearRegression()
+    modelo_aurelion.fit(X_train, y_train)
+
+    # 5. Predicciones y resultados
+    y_pred = modelo_aurelion.predict(X_test)
+    print(f"R2 Score: {r2_score(y_test, y_pred):.2f}")
+    print(f"MAE: {mean_absolute_error(y_test, y_pred):.2f}")
 
 if __name__ == "__main__":
     main()
