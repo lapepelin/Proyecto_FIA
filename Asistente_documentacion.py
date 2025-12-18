@@ -16,6 +16,7 @@ def menu_principal():
         print("3. Programa en Python")
         print("4. Sugerencias Copilot")
         print("5. Alcance de análisis estadístico")
+        print("6. Modelo de Machine Learning")
         print("0. Salir")
         opcion = input("\nSeleccione una opción: ")
 
@@ -29,6 +30,8 @@ def menu_principal():
             menu_copilot()
         elif opcion == "5":
             menu_estadisticas()
+        elif opcion == "6":
+            menu_modelo_ml()
         elif opcion == "0":
             print("\nCerrando el asistente.")
             break
@@ -230,6 +233,52 @@ def menu_estadisticas():
                 "El modelo de ventas combina pocas transacciones con montos elevados. Se recomienda optimizar precios, "
                 "segmentar clientes de alto valor, diseñar promociones según medio de pago y reforzar las categorías con mayor aporte."
             )
+        elif opcion == "0":
+            break
+        else:
+            print("Opción no válida.")
+
+# 6. MODELO DE MACHINE LEARNING
+
+def menu_modelo_ml():
+    while True:
+        print("\n6. MODELO DE MACHINE LEARNING")
+        print("1. Objetivo (predecir o clasificar)")
+        print("2. Algoritmo elegido y justificación")
+        print("3. Entradas (X) y salida (y)")
+        print("4. Métricas de evaluación")
+        print("5. Modelo ML implementado")
+        print("6. División train/test y entrenamiento")
+        print("7. Predicciones y métricas calculadas")
+        print("8. Resultados en gráficos")
+        print("0. Volver al menú principal")
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+            print("\nOBJETIVO:")
+            print("Predecir el importe total de una venta como variable continua.")
+        elif opcion == "2":
+            print("\nALGORITMO Y JUSTIFICACIÓN:")
+            print("Se utiliza una Regresión Lineal porque existe una relación lineal entre las variables explicativas y el importe.")
+        elif opcion == "3":
+            print("\nENTRADAS Y SALIDA:")
+            print("- Entradas (X): cantidad, precio_unitario y categoria.\n"
+                  "- Salida (y): importe total de la transacción.")
+        elif opcion == "4":
+            print("\nMÉTRICAS DE EVALUACIÓN:")
+            print("- MAE (Error Absoluto Medio)\n"
+                  "- MSE (Error Cuadrático Medio)\n"
+                  "- R^2 (Coeficiente de Determinación)")
+        elif opcion == "5":
+            print("\nMODELO IMPLEMENTADO:")
+            print("Regresión Lineal Múltiple desarrollada con la librería scikit-learn.")
+        elif opcion == "6":
+            print("\nDIVISIÓN TRAIN/TEST Y ENTRENAMIENTO:")
+            print("El 80% de los datos se usa para entrenamiento y el 20% restante para prueba, manteniendo datos de test sin exponer durante el ajuste.")
+        elif opcion == "7":
+            print("\nPREDICCIONES Y MÉTRICAS CALCULADAS:")
+        elif opcion == "8":
+            print("\nRESULTADOS EN GRÁFICOS:")
         elif opcion == "0":
             break
         else:

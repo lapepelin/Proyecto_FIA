@@ -10,11 +10,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-
-import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.model_selection import train_test_split
 
 
 def _resolver_ruta(base_dir: Path, stem: str) -> Path:
@@ -228,22 +226,28 @@ def main() -> None:
     print("=== Estadísticas descriptivas ===")
     print(stats["resumen_general"].to_string())
 
-    # 1. Preparar los datos (unificar detalle con categorías de productos)
-    df_ml = df_detalle.merge(df_productos[['id_producto', 'categoria']], on='id_producto', how='left')
-    df_ml = pd.get_dummies(df_ml, columns=['categoria'], drop_first=True)
+    # Modelo de regresión lineal para estimar el importe
+    df_ml = data_limpia["detalle"].copy()
+    if "categoria" in df_ml:
+        df_ml = pd.get_dummies(df_ml, columns=["categoria"], drop_first=True)
 
-    # 2. Definir variables
-    X = df_ml[['cantidad', 'precio_unitario'] + [col for col in df_ml.columns if 'categoria_' in col]]
-    y = df_ml['importe']
+    variables_basicas = [col for col in ("cantidad", "precio_unitario") if col in df_ml]
+    variables_categorias = [col for col in df_ml.columns if col.startswith("categoria_")]
+    columnas_modelo = variables_basicas + variables_categorias
 
-    # 3. Dividir en entrenamiento y prueba (80/20)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    if not columnas_modelo:
+        raise ValueError("No hay columnas disponibles para entrenar el modelo")
 
-    # 4. Entrenar al "esclavo" (el modelo)
+    X = df_ml[columnas_modelo]
+    y = df_ml["importe"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
     modelo_aurelion = LinearRegression()
     modelo_aurelion.fit(X_train, y_train)
 
-    # 5. Predicciones y resultados
     y_pred = modelo_aurelion.predict(X_test)
     print(f"R2 Score: {r2_score(y_test, y_pred):.2f}")
     print(f"MAE: {mean_absolute_error(y_test, y_pred):.2f}")
