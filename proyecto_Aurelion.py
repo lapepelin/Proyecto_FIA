@@ -2,11 +2,11 @@
 Análisis para Tienda Aurelion.
 
 El script realiza: limpieza, estadísticas descriptivas, distribuciones,
-correlaciones, generación de gráficos.
+correlaciones, generación de gráficos, y un modelo de regresión lineal
+para estimar el importe de ventas basado en cantidad y precio unitario.
 """
 
 from pathlib import Path
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -34,10 +34,10 @@ def cargar_datos(base_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Pat
     """
     
     stems = {
-        "clientes": "Clientes",
-        "ventas": "Ventas",
-        "detalle": "Detalle_ventas",
-        "productos": "Productos",
+        "Clientes": "Clientes",
+        "Ventas": "Ventas",
+        "Detalle_ventas": "Detalle_ventas",
+        "Productos": "Productos",
     }
 
     data: dict[str, pd.DataFrame] = {}
@@ -64,78 +64,80 @@ def exportar_fuentes_csv(
 
 
 def limpiar_datos(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Aplica reglas básicas de limpieza y prepara las tablas unificadas."""
-    clientes = data["clientes"].copy()
-    ventas = data["ventas"].copy()
-    detalle = data["detalle"].copy()
-    productos = data["productos"].copy()
+    """Aplica reglas básicas de limpieza y consistencia a los datasets."""
+    Clientes = data["Clientes"].copy()
+    Ventas = data["Ventas"].copy()
+    Detalle_ventas = data["Detalle_ventas"].copy()
+    Productos = data["Productos"].copy()
 
     # Normalizar nombres de columnas en minúsculas
-    for df in (clientes, ventas, detalle, productos):
+    for df in (Clientes, Ventas, Detalle_ventas, Productos):
         df.columns = [c.strip().lower() for c in df.columns]
 
     # Tipos
     for col in ("fecha_alta", "fecha"):
-        if col in clientes:
-            clientes[col] = pd.to_datetime(clientes[col], errors="coerce")
-        if col in ventas:
-            ventas[col] = pd.to_datetime(ventas[col], errors="coerce")
+        if col in Clientes:
+            Clientes[col] = pd.to_datetime(Clientes[col], errors="coerce")
+        if col in Ventas:
+            Ventas[col] = pd.to_datetime(Ventas[col], errors="coerce")
 
-    for df, cols in ((detalle, ["cantidad", "precio_unitario", "importe"]), (productos, ["precio_unitario"])):
+    for df, cols in ((Detalle_ventas, ["cantidad", "precio_unitario", "importe"]), (Productos, ["precio_unitario"])):
         for col in cols:
             if col in df:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
 
     # Eliminar duplicados exactos
-    clientes = clientes.drop_duplicates()
-    ventas = ventas.drop_duplicates()
-    detalle = detalle.drop_duplicates()
-    productos = productos.drop_duplicates()
+    Clientes = Clientes.drop_duplicates()
+    Ventas = Ventas.drop_duplicates()
+    Detalle_ventas = Detalle_ventas.drop_duplicates()
+    Productos = Productos.drop_duplicates()
 
     # Quitar registros con claves faltantes
-    ventas = ventas.dropna(subset=["id_venta", "id_cliente"])
-    detalle = detalle.dropna(subset=["id_venta", "id_producto"])
-    productos = productos.dropna(subset=["id_producto"])
+    Ventas = Ventas.dropna(subset=["id_venta", "id_cliente"])
+    Detalle_ventas = Detalle_ventas.dropna(subset=["id_venta", "id_producto"])
+    Productos = Productos.dropna(subset=["id_producto"])
 
     # Consistencias básicas
-    detalle = detalle[detalle["cantidad"] > 0]
+    Detalle_ventas = Detalle_ventas[Detalle_ventas["cantidad"] > 0]
     for col in ("precio_unitario", "importe"):
-        if col in detalle:
-            detalle = detalle[detalle[col] >= 0]
-    if "precio_unitario" in productos:
-        productos = productos[productos["precio_unitario"] >= 0]
+        if col in Detalle_ventas:
+            Detalle_ventas = Detalle_ventas[Detalle_ventas[col] >= 0]
+    if "precio_unitario" in Productos:
+        Productos = Productos[Productos["precio_unitario"] >= 0]
 
     # Enriquecer el detalle con información del catálogo de productos
-    if "id_producto" in detalle.columns and "id_producto" in productos.columns:
+    if "id_producto" in Detalle_ventas.columns and "id_producto" in Productos.columns:
         columnas_productos = [
             col
             for col in ("id_producto", "categoria", "precio_unitario")
-            if col in productos.columns
+            if col in Productos.columns
         ]
-        productos_unicos = productos[columnas_productos].drop_duplicates(
+        productos_unicos = Productos[columnas_productos].drop_duplicates(
             subset=["id_producto"]
         )
-        detalle = detalle.merge(
+        Detalle_ventas = Detalle_ventas.merge(
             productos_unicos, on="id_producto", how="left", suffixes=("", "_prod")
         )
 
-    ventas_detalle = ventas.merge(detalle, on="id_venta", how="left", suffixes=("_venta", "_detalle"))
-    ventas_detalle = ventas_detalle.merge(clientes, on="id_cliente", how="left", suffixes=("", "_cliente"))
+    # Unir todo en un solo DataFrame para análisis
+    ventas_analitica = Ventas.merge(Detalle_ventas, on="id_venta", how="left", suffixes=("_venta", "_detalle"))
+    ventas_analitica = ventas_analitica.merge(Clientes, on="id_cliente", how="left", suffixes=("", "_cliente"))
 
     return {
-        "clientes": clientes,
-        "ventas": ventas,
-        "detalle": detalle,
-        "ventas_detalle": ventas_detalle,
+        "Clientes": Clientes,
+        "Ventas": Ventas,
+        "Detalle_ventas": Detalle_ventas,
+        "Productos": Productos,
+        "ventas_analitica": ventas_analitica,
     }
 
 
-def estadisticas_descriptivas(ventas_detalle: pd.DataFrame) -> dict[str, pd.Series]:
+def estadisticas_descriptivas(ventas_analitica: pd.DataFrame) -> dict[str, pd.Series]:
     """Calcula métricas descriptivas clave."""
-    ventas_totales = ventas_detalle.groupby("id_venta")["importe"].sum()
-    ticket_por_cliente = ventas_detalle.groupby("id_cliente")["importe"].sum()
-    if "categoria" in ventas_detalle.columns:
-        ticket_por_categoria = ventas_detalle.groupby("categoria")["importe"].sum()
+    ventas_totales = ventas_analitica.groupby("id_venta")["importe"].sum()
+    ticket_por_cliente = ventas_analitica.groupby("id_cliente")["importe"].sum()
+    if "categoria" in ventas_analitica.columns:
+        ticket_por_categoria = ventas_analitica.groupby("categoria")["importe"].sum()
     else:
         ticket_por_categoria = pd.Series(dtype=float)
 
@@ -143,8 +145,8 @@ def estadisticas_descriptivas(ventas_detalle: pd.DataFrame) -> dict[str, pd.Seri
         "ventas_registradas": ventas_totales.shape[0],
         "monto_total": ventas_totales.sum(),
         "ticket_promedio": ventas_totales.mean(),
-        "productos_distintos": ventas_detalle["id_producto"].nunique(),
-        "clientes_distintos": ventas_detalle["id_cliente"].nunique(),
+        "productos_distintos": ventas_analitica["id_producto"].nunique(),
+        "clientes_distintos": ventas_analitica["id_cliente"].nunique(),
     })
 
     return {
@@ -155,9 +157,9 @@ def estadisticas_descriptivas(ventas_detalle: pd.DataFrame) -> dict[str, pd.Seri
     }
 
 
-def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
+def crear_distribuciones(ventas_analitica: pd.DataFrame, salida: Path) -> None:
     """Genera histogramas y distribuciones básicas."""
-    ventas_totales = ventas_detalle.groupby("id_venta")["importe"].sum()
+    ventas_totales = ventas_analitica.groupby("id_venta")["importe"].sum()
 
     plt.figure(figsize=(8, 5))
     sns.histplot(ventas_totales, bins=20, kde=True, color="#4c72b0")
@@ -170,7 +172,7 @@ def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
 
     plt.figure(figsize=(8, 5))
     sns.countplot(
-        data=ventas_detalle.drop_duplicates("id_venta"),
+        data=ventas_analitica.drop_duplicates("id_venta"),
         x="medio_pago",
         hue="medio_pago",
         palette="viridis",
@@ -184,10 +186,10 @@ def crear_distribuciones(ventas_detalle: pd.DataFrame, salida: Path) -> None:
     plt.close()
 
 
-def crear_correlaciones(ventas_detalle: pd.DataFrame, salida: Path) -> pd.DataFrame:
+def crear_correlaciones(ventas_analitica: pd.DataFrame, salida: Path) -> pd.DataFrame:
     """Calcula matriz de correlación y genera un heatmap."""
-    num_cols = [c for c in ["cantidad", "importe"] if c in ventas_detalle.columns]
-    corr = ventas_detalle[num_cols].corr()
+    num_cols = [c for c in ["cantidad", "importe"] if c in ventas_analitica.columns]
+    corr = ventas_analitica[num_cols].corr()
 
     plt.figure(figsize=(6, 4))
     sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
@@ -203,8 +205,8 @@ def main() -> None:
 
     data, rutas = cargar_datos(base_dir)
     data_limpia = limpiar_datos(data)
-    ventas_detalle = data_limpia["ventas_detalle"]
-
+    ventas_analitica = data_limpia["ventas_analitica"]
+    
     exportar_fuentes_csv(data, rutas, salida)
 
     # Exportar versiones limpias
@@ -212,9 +214,9 @@ def main() -> None:
         base_nombre = rutas.get(nombre, Path()).stem if nombre in rutas else nombre
         df.to_csv(salida / f"{base_nombre}_limpio.csv", index=False)
 
-    stats = estadisticas_descriptivas(ventas_detalle)
-    crear_distribuciones(ventas_detalle, salida)
-    corr = crear_correlaciones(ventas_detalle, salida)
+    stats = estadisticas_descriptivas(ventas_analitica)
+    crear_distribuciones(ventas_analitica, salida)
+    corr = crear_correlaciones(ventas_analitica, salida)
 
     # Guardar estadísticas
     stats["resumen_general"].to_csv(salida / "resumen_general.csv")
@@ -227,7 +229,7 @@ def main() -> None:
     print(stats["resumen_general"].to_string())
 
     # Modelo de regresión lineal para estimar el importe
-    df_ml = data_limpia["detalle"].copy()
+    df_ml = data_limpia["Detalle_ventas"].copy()
     if "categoria" in df_ml:
         df_ml = pd.get_dummies(df_ml, columns=["categoria"], drop_first=True)
 
