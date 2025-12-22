@@ -2,33 +2,66 @@ PRESENTACIÓN
 
 1. El Gancho y la Visión Estratégica
 
-Qué decir: "Buenos días. Hoy les presento la solución de Business Intelligence para Tienda Aurelion. Mi grupo numero 10 conformado por mi (Estefany) y Lisandro. El problema era crítico: la empresa operaba sin estadísticas u objetivos claros, con datos dispersos en archivos Excel desordenados. El objetivo del proyecto no fue solo crear gráficos, sino construir un ecosistema de datos que permita tomar decisiones basadas en la rentabilidad real y el comportamiento de los consumidores."
+Muy buenas noches. Somos el Grupo número 10, conformado por Lisandro y quien les habla, Estefany. Hoy les presentamos la solución de Business Intelligence(BI) para Tienda Aurelion. El problema era crítico: la empresa operaba a ciegas, sin objetivos claros y con datos dispersos en archivos Excel desordenados. Nuestro objetivo no fue solo crear gráficos u estadísticas al azar, sino construir un ecosistema de datos profesional que permita tomar decisiones basadas en la rentabilidad real y el comportamiento del consumidor.
 
 2. Ingeniería de Datos: El Poder de Python
 
-Qué decir: "Antes de tocar Power BI, aplicamos limpieza usando Python y Pandas. Se nos dio de base de datos 4 archivos excels: clientes, productos, ventas y detalle de ventas. Desarrollamos un script que realiza limpieza profunda: normalizamos tipos de datos, eliminamos duplicados y gestionamos valores faltantes."
-
-Detalle Pro: "Exportamos estos resultados en formato CSV limpio, lo que reduce la carga computacional en Power BI."
+Antes de tocar Power BI, aplicamos rigor técnico usando Python y Pandas. Trabajamos con 4 fuentes de datos: Clientes, Productos, Ventas y Detalle de Ventas. Desarrollamos un script para normalizar tipos de datos y eliminar duplicados. Exportamos estos resultados en formato CSV, lo que optimizó drásticamente el rendimiento del reporte.
 
 3. Arquitectura del Modelo: Esquema Estrella
-Qué decir: "El corazón de esta solución es un Esquema Estrella optimizado. Tenemos una tabla de hechos central que registra cada transacción y dimensiones periféricas que le dan contexto. Hemos implementado una Tabla Calendario mediante DAX con la función CALENDARAUTO()."
 
-Punto Clave: "Configuramos las relaciones como 1 a muchos con dirección de filtro única para evitar ambigüedades y garantizar que el rendimiento del reporte sea instantáneo."
+El corazón de esta solución es un Esquema Estrella optimizado. Tenemos tablas de hechos centrales (Ventas y Detalle_ventas) que registran las transacciones, rodeadas de dimensiones que dan contexto. Implementamos una Tabla Calendario mediante DAX con la función CALENDARAUTO() y configuramos relaciones de 1 a muchos ($\ast$) con dirección de filtro única para garantizar la integridad referencial.
 
 4. Inteligencia de Negocios y DAX Avanzado
-Qué decir: "Para obtener valor real, desarrollamos métricas complejas. No solo sumamos columnas. Usamos Variables (VAR/RETURN) en DAX para calcular el crecimiento interanual (YoY - Year over Year) comparando con SAMEPERIODLASTYEAR."
 
-Métricas mencionadas: "Calculamos el Ticket Promedio dividiendo ingresos entre pedidos únicos y creamos Agrupaciones por precio para segmentar nuestro catálogo de forma automática."
+Desarrollamos métricas clave en DAX, como el Ticket Promedio, que nos indica el gasto medio por pedido. Nuestra medida de Crecimiento YoY (uai-ou-uai) refleja actualmente un 0% porque nuestro dataset se concentra en 2024, pero la lógica ya está lista para escalar con datos históricos. También aplicamos Agrupación de precios para segmentar el catálogo automáticamente.
 
 5. Narrativa Visual e Interactividad
 
-Página 1: "El Dashboard principal usa un visual de KPI que cambia de color según el cumplimiento de metas. Logramos un éxito del +2.58% sobre el objetivo."
+Página 1: 
+El Dashboard principal usa un visual de KPI que cambia de color según el cumplimiento de metas. Logramos un éxito del +2.58% sobre el objetivo de 500 mil. Usamos un segmentador de Año para filtrar todo el reporte. Verán cómo la tendencia de ventas y el KPI se ajustan en cascada al aplicar filtros como el medio de pago o año. Como habiamos indicado no se tiene datos del 2023 por lo cual el crecimiento para el 2024 es 0 y de igual manera no hay graficos que podamos analizar porque no hay datos de ese año.
 
-Página 2: "Aquí analizamos el inventario. La Jerarquía Temporal permite hacer drill-down desde el año hasta el detalle mensual en un solo gráfico."
+Página 2: 
+Visualizamos el Volumen de Unidades Vendidas mediante un gráfico de áreas segmentado por rangos de precio. Gracias a la técnica de binning, identificamos los niveles de precio con mayor movimiento de stock. El gráfico de anillo complementa esto mostrando un inventario perfectamente balanceado entre las categorías de Alimentos y Limpieza.
 
-Página 3: "Finalmente, el gráfico de Dispersión nos permite identificar a los clientes VIP mediante la relación entre volumen e importe de compra."
-
-Interactividad: "Todo el reporte funciona en cascada gracias a los segmentadores y la sincronización de filtros."
+Página 3: 
+Finalmente, usamos un Análisis de Rentabilidad mediante un gráfico de dispersión. Al cruzar la cantidad de productos comprados contra el importe total, podemos identificar visualmente a nuestros clientes VIP y diferenciarlos de los consumidores ocasionales.
 
 6. Conclusión y Futuro 
-Qué decir: "Tienda Aurelion ahora tiene el poder de predecir tendencias y optimizar su stock. Muchas gracias."
+
+Tienda Aurelion ahora tiene el poder de predecir tendencias y optimizar su stock. Hemos pasado de archivos Excel aislados a una plataforma de decisiones estratégica. Muchas gracias.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
