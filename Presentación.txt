@@ -1,0 +1,34 @@
+PRESENTACIÓN
+
+1. El Gancho y la Visión Estratégica
+
+Qué decir: "Buenos días. Hoy les presento la solución de Business Intelligence para Tienda Aurelion. Mi grupo numero 10 conformado por mi (Estefany) y Lisandro. El problema era crítico: la empresa operaba sin estadísticas u objetivos claros, con datos dispersos en archivos Excel desordenados. El objetivo del proyecto no fue solo crear gráficos, sino construir un ecosistema de datos que permita tomar decisiones basadas en la rentabilidad real y el comportamiento de los consumidores."
+
+2. Ingeniería de Datos: El Poder de Python
+
+Qué decir: "Antes de tocar Power BI, aplicamos limpieza usando Python y Pandas. Se nos dio de base de datos 4 archivos excels: clientes, productos, ventas y detalle de ventas. Desarrollamos un script que realiza limpieza profunda: normalizamos tipos de datos, eliminamos duplicados y gestionamos valores faltantes."
+
+Detalle Pro: "Exportamos estos resultados en formato CSV limpio, lo que reduce la carga computacional en Power BI."
+
+3. Arquitectura del Modelo: Esquema Estrella
+Qué decir: "El corazón de esta solución es un Esquema Estrella optimizado. Tenemos una tabla de hechos central que registra cada transacción y dimensiones periféricas que le dan contexto. Hemos implementado una Tabla Calendario mediante DAX con la función CALENDARAUTO()."
+
+Punto Clave: "Configuramos las relaciones como 1 a muchos con dirección de filtro única para evitar ambigüedades y garantizar que el rendimiento del reporte sea instantáneo."
+
+4. Inteligencia de Negocios y DAX Avanzado
+Qué decir: "Para obtener valor real, desarrollamos métricas complejas. No solo sumamos columnas. Usamos Variables (VAR/RETURN) en DAX para calcular el crecimiento interanual (YoY - Year over Year) comparando con SAMEPERIODLASTYEAR."
+
+Métricas mencionadas: "Calculamos el Ticket Promedio dividiendo ingresos entre pedidos únicos y creamos Agrupaciones por precio para segmentar nuestro catálogo de forma automática."
+
+5. Narrativa Visual e Interactividad
+
+Página 1: "El Dashboard principal usa un visual de KPI que cambia de color según el cumplimiento de metas. Logramos un éxito del +2.58% sobre el objetivo."
+
+Página 2: "Aquí analizamos el inventario. La Jerarquía Temporal permite hacer drill-down desde el año hasta el detalle mensual en un solo gráfico."
+
+Página 3: "Finalmente, el gráfico de Dispersión nos permite identificar a los clientes VIP mediante la relación entre volumen e importe de compra."
+
+Interactividad: "Todo el reporte funciona en cascada gracias a los segmentadores y la sincronización de filtros."
+
+6. Conclusión y Futuro 
+Qué decir: "Tienda Aurelion ahora tiene el poder de predecir tendencias y optimizar su stock. Muchas gracias."
